@@ -1,0 +1,16 @@
+  /* Make the page use flexbox layout */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+  }
+  main {
+    flex: 1; /* Allow main content to grow and fill space */
+  }
+  footer {
+    background-color: #343a40; /* Dark footer background */
+    color: white;
+    text-align: center;
+    padding: 1rem 0; /* Add padding */
+  }
