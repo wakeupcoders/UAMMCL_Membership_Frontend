@@ -8,15 +8,15 @@
   <div class="col-md-4">
     <div class="card text-center">
       <img
-        src="https://cdni.iconscout.com/illustration/premium/thumb/folder-not-found-illustration-download-in-svg-png-gif-file-formats--no-records-empty-list-record-emply-data-management-pack-business-illustrations-4413454.png?f=webp"
+        src="https://assets-v2.lottiefiles.com/a/0e30b444-117c-11ee-9b0d-0fd3804d46cd/BkQxD7wtnZ.gif"
         class="card-img-top mx-auto d-block" alt="No Records">
       <div class="card-body">
         <h3 class="card-title mb-3">No Records Found</h3>
         <p class="card-text mb-4">It looks like there are no records available. You can add new records or contact
           support for assistance.</p>
         <div class="d-flex justify-content-center gap-3">
-          <button class="btn btn-primary btn-lg" (click)="showForm(false)">Add Records</button>
-          <button class="btn btn-secondary btn-lg">Contact Support</button>
+          <button class="btn btn-dark btn-lg" (click)="showForm(false)">Add Records</button>
+          <a href="https://wakeupcoders.com" target="_blank" class="btn btn-secondary btn-lg">Contact Support</a>
         </div>
       </div>
     </div>
@@ -26,13 +26,13 @@
 
 
 
-<div class="" *ngIf="!isLoading">
+<div class="container" *ngIf="!isLoading">
   <span *ngIf="!isTableView">
-    <h2>Ordinary Membership Form</h2>
     <form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
       <!-- Applicant Details Card -->
-      <div class="card p-3 mb-3">
-        <h5>Applicant Details</h5>
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+        <h4>Applicant Details</h4>
+        <hr>
 
         <div class="mb-3">
           <label>Name of Applicant</label>
@@ -80,148 +80,157 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label>Full Name</label>
-        <input formControlName="fullName" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('fullName')?.touched && memberForm.get('fullName')?.errors?.['required']">
-          Full Name is required.
-        </div>
-      </div>
+      <!-- Personal Details Starts Here -->
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
 
-      <div class="mb-3">
-        <label>Mother's Name</label>
-        <input formControlName="motherName" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('motherName')?.touched && memberForm.get('motherName')?.errors?.['required']">
-          Mother's Name is required.
-        </div>
-      </div>
+        <h4>Personal Details</h4>
+        <hr>
 
-      <div class="mb-3">
-        <label>Wife's Name</label>
-        <input formControlName="wifeName" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('wifeName')?.touched && memberForm.get('wifeName')?.errors?.['required']">
-          Wife's Name is required.
+        <div class="mb-3">
+          <label>Full Name</label>
+          <input formControlName="fullName" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('fullName')?.touched && memberForm.get('fullName')?.errors?.['required']">
+            Full Name is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Age</label>
-        <input formControlName="age" class="form-control" type="number" />
-        <div class="text-danger" *ngIf="memberForm.get('age')?.touched && memberForm.get('age')?.errors?.['required']">
-          Age is required.
+        <div class="mb-3">
+          <label>Mother's Name</label>
+          <input formControlName="motherName" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('motherName')?.touched && memberForm.get('motherName')?.errors?.['required']">
+            Mother's Name is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Date of Birth</label>
-        <input formControlName="dateOfBirth" class="form-control" type="date" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('dateOfBirth')?.touched && memberForm.get('dateOfBirth')?.errors?.['required']">
-          Date of Birth is required.
+        <div class="mb-3">
+          <label>Wife's Name</label>
+          <input formControlName="wifeName" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('wifeName')?.touched && memberForm.get('wifeName')?.errors?.['required']">
+            Wife's Name is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Educational Qualification</label>
-        <input formControlName="educationalQualification" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('educationalQualification')?.touched && memberForm.get('educationalQualification')?.errors?.['required']">
-          Educational Qualification is required.
+        <div class="mb-3">
+          <label>Age</label>
+          <input formControlName="age" class="form-control" type="number" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('age')?.touched && memberForm.get('age')?.errors?.['required']">
+            Age is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Marital Status</label>
-        <select formControlName="maritalStatus" class="form-control">
-          <option value="">Select</option>
-          <option value="Single">Single</option>
-          <option value="Married">Married</option>
-          <option value="Divorced">Divorced</option>
-        </select>
-        <div class="text-danger"
-          *ngIf="memberForm.get('maritalStatus')?.touched && memberForm.get('maritalStatus')?.errors?.['required']">
-          Marital Status is required.
+        <div class="mb-3">
+          <label>Date of Birth</label>
+          <input formControlName="dateOfBirth" class="form-control" type="date" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('dateOfBirth')?.touched && memberForm.get('dateOfBirth')?.errors?.['required']">
+            Date of Birth is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Permanent Address</label>
-        <input formControlName="permanentAddress" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('permanentAddress')?.touched && memberForm.get('permanentAddress')?.errors?.['required']">
-          Permanent Address is required.
+        <div class="mb-3">
+          <label>Educational Qualification</label>
+          <input formControlName="educationalQualification" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('educationalQualification')?.touched && memberForm.get('educationalQualification')?.errors?.['required']">
+            Educational Qualification is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Permanent Pin Code</label>
-        <input formControlName="permanentPinCode" class="form-control" type="number" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('permanentPinCode')?.touched && memberForm.get('permanentPinCode')?.errors?.['required']">
-          Permanent Pin Code is required.
+        <div class="mb-3">
+          <label>Marital Status</label>
+          <select formControlName="maritalStatus" class="form-control">
+            <option value="">Select</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+          </select>
+          <div class="text-danger"
+            *ngIf="memberForm.get('maritalStatus')?.touched && memberForm.get('maritalStatus')?.errors?.['required']">
+            Marital Status is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Present Address</label>
-        <input formControlName="presentAddress" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('presentAddress')?.touched && memberForm.get('presentAddress')?.errors?.['required']">
-          Present Address is required.
+        <div class="mb-3">
+          <label>Permanent Address</label>
+          <input formControlName="permanentAddress" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('permanentAddress')?.touched && memberForm.get('permanentAddress')?.errors?.['required']">
+            Permanent Address is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Present Pin Code</label>
-        <input formControlName="presentPinCode" class="form-control" type="number" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('presentPinCode')?.touched && memberForm.get('presentPinCode')?.errors?.['required']">
-          Present Pin Code is required.
+        <div class="mb-3">
+          <label>Permanent Pin Code</label>
+          <input formControlName="permanentPinCode" class="form-control" type="number" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('permanentPinCode')?.touched && memberForm.get('permanentPinCode')?.errors?.['required']">
+            Permanent Pin Code is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Telephone Number</label>
-        <input formControlName="telephoneNumber" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('telephoneNumber')?.touched && memberForm.get('telephoneNumber')?.errors?.['required']">
-          Telephone Number is required.
+        <div class="mb-3">
+          <label>Present Address</label>
+          <input formControlName="presentAddress" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('presentAddress')?.touched && memberForm.get('presentAddress')?.errors?.['required']">
+            Present Address is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Email</label>
-        <input formControlName="email" class="form-control" type="email" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('email')?.touched && memberForm.get('email')?.errors?.['required']">
-          Email is required.
+        <div class="mb-3">
+          <label>Present Pin Code</label>
+          <input formControlName="presentPinCode" class="form-control" type="number" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('presentPinCode')?.touched && memberForm.get('presentPinCode')?.errors?.['required']">
+            Present Pin Code is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>Aadhar Card</label>
-        <input formControlName="aadharCard" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('aadharCard')?.touched && memberForm.get('aadharCard')?.errors?.['required']">
-          Aadhar Card is required.
+        <div class="mb-3">
+          <label>Telephone Number</label>
+          <input formControlName="telephoneNumber" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('telephoneNumber')?.touched && memberForm.get('telephoneNumber')?.errors?.['required']">
+            Telephone Number is required.
+          </div>
         </div>
-      </div>
 
-      <div class="mb-3">
-        <label>PAN Card</label>
-        <input formControlName="panCard" class="form-control" type="text" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('panCard')?.touched && memberForm.get('panCard')?.errors?.['required']">
-          PAN Card is required.
+        <div class="mb-3">
+          <label>Email</label>
+          <input formControlName="email" class="form-control" type="email" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('email')?.touched && memberForm.get('email')?.errors?.['required']">
+            Email is required.
+          </div>
         </div>
+
+        <div class="mb-3">
+          <label>Aadhar Card</label>
+          <input formControlName="aadharCard" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('aadharCard')?.touched && memberForm.get('aadharCard')?.errors?.['required']">
+            Aadhar Card is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>PAN Card</label>
+          <input formControlName="panCard" class="form-control" type="text" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('panCard')?.touched && memberForm.get('panCard')?.errors?.['required']">
+            PAN Card is required.
+          </div>
+        </div>
+
       </div>
 
 
       <!-- Nomination Details Card -->
-      <div class="card p-3 mb-3">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
         <h5>Nomination Details</h5>
         <div formGroupName="nomination">
           <div class="mb-3">
@@ -271,8 +280,9 @@
         </div>
       </div>
 
+
       <!-- Certificate Details Card -->
-      <div class="card p-3 mb-3">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
         <h5>Certificate Details</h5>
         <div formGroupName="certificateDetails">
           <div class="mb-3">
@@ -320,26 +330,20 @@
             </div>
           </div>
 
-          <div class="mb-3">
+
+          <!-- <div class="mb-3">
             <label>Value of Share</label>
-            <input formControlName="value_of_share" class="form-control" type="number" />
+            <input formControlName="value_of_share" class="form-control" type="text"/>
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.value_of_share')?.touched && memberForm.get('certificateDetails.value_of_share')?.errors?.['required']">
               Value of Share is required.
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
 
-      <div class="mb-3">
-        <label>Application Received On</label>
-        <input formControlName="applicationReceivedOn" class="form-control" type="date" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('applicationReceivedOn')?.touched && memberForm.get('applicationReceivedOn')?.errors?.['required']">
-          Application Received Date is required.
-        </div>
-      </div>
+
 
       <div class="mb-3">
         <label>Receipt Number</label>
@@ -356,7 +360,7 @@
 
 
       <!-- Submit Button -->
-      <button class="btn btn-primary" type="submit" [disabled]="memberForm.invalid">Submit</button>
+      <button class="btn btn-dark" type="submit" [disabled]="memberForm.invalid">Submit</button>
       <button class="btn btn-danger" (click)="showForm(true)">Cancel</button>
     </form>
   </span>
@@ -414,18 +418,25 @@
                     <path
                       d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
                   </svg></button>
-                <button class="btn btn-danger btn-sm" (click)="onDelete(member._id)"><svg
+                <button class="btn btn-danger btn-sm" (click)="deletePopup(member._id)"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-trash-fill" viewBox="0 0 16 16">
                     <path
                       d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
                   </svg></button>
-                <button class="btn btn-secondary btn-sm" (click)="onGenerateCertificate(member._id)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                    fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+                <button class="btn btn-secondary btn-sm" (click)="onGenerateCertificate(member._id)"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt"
+                    viewBox="0 0 16 16">
                     <path
                       d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z" />
                     <path
                       d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5" />
+                  </svg></button>
+
+
+                  <button class="btn btn-success btn-sm" [routerLink]="['/viewordinary', member._id]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
                   </svg></button>
               </div>
             </td>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GenericService } from 'src/app/appServices/generic.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ordinarymembershipform',
@@ -53,9 +54,8 @@ export class OrdinarymembershipformComponent implements OnInit {
         Holding_Iden_number: ['', Validators.required],
         share_start_number: ['', [Validators.required, Validators.min(1)]],
         share_end_number: ['', [Validators.required, Validators.min(1)]],
-        value_of_share: ['', [Validators.required, Validators.min(1)]],
+        // value_of_share: ['100', [Validators.required, Validators.min(1)]],
       }),
-      applicationReceivedOn: ['', Validators.required],
       receiptNumber: ['', [Validators.required, Validators.min(1)]],
     });
   }
@@ -162,12 +162,30 @@ export class OrdinarymembershipformComponent implements OnInit {
         share_end_number: member.certificateDetails?.share_end_number,
         value_of_share: member.certificateDetails?.value_of_share,
       },
-      applicationReceivedOn: member.applicationReceivedOn,
       receiptNumber: member.receiptNumber,
     });
 
     // Additional logic if needed
     // this.showForm(true);
+  }
+
+
+  deletePopup(id: string): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call your delete function here
+        this.onDelete(id);
+      }
+    });
   }
 
 

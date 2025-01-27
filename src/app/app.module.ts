@@ -11,6 +11,8 @@ import { FooterComponent } from './appComponents/footer/footer.component';
 import { LoaderComponent } from './appComponents/loader/loader.component';
 import { CertificateComponent } from './appComponents/certificate/certificate.component';
 import { PageNotFoundComponent } from './appComponents/page-not-found/page-not-found.component';
+import { ViewordinaryformComponent } from './appComponents/viewordinaryform/viewordinaryform.component';
+import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordinaryreceipt.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PageNotFoundComponent } from './appComponents/page-not-found/page-not-f
     FooterComponent,
     LoaderComponent,
     CertificateComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ViewordinaryformComponent,
+    OrdinaryreceiptComponent
   ],
   imports: [
     BrowserModule,

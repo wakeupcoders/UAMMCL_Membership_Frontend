@@ -1,0 +1,79 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div class="receipt" id="printReceipt" *ngIf="!isLoading">
+    <div class="header">
+        <img src="./assets/img/Unati-logo.png" alt="" srcset="" height="150" width="150">
+        <h1>THE UNATI AGRI ALLIED & MARKETING MULTISTATE CO-OPERATIVE SOCIETY LTD.</h1>
+        <p>Registered Under the Multistate Cooperative Societies Act 2002</p>
+        <p>Regd. No. MSCS/CR/1424/2023</p>
+        <p>Head Office: 5 Km Talwara Milestone, Near Mukerian Hydel Power House No.-1, G.T. Road</p>
+        <p>Talwara, Dist. Hoshiarpur, Punjab, INDIA</p>
+        <p>Email: admin@unatmmcl.org | Website: www.unati.org</p>
+    </div>
+    <hr>
+    <div class="section">
+        <label>Date:</label> <span class="line">{{ receiptDetails.createdAt | date: 'dd, MMMM yyyy' }}</span>
+    </div>
+    <div class="section">
+        <label>Receipt No:</label> <span class="line">{{ receiptDetails.receiptNumber }}</span>
+    </div>
+    <div class="section">
+        <label>Type of Membership:</label> <span class="line">Ordinary</span>
+    </div>
+    <div class="section">
+        <label>Membership Form No:</label> <span class="line">{{ receiptDetails.membership_id }}</span>
+    </div>
+    <div class="section">
+        <label>Name of Applicant:</label> <span class="line">{{ receiptDetails.nameOfApplicant }}</span>
+    </div>
+    <div class="section">
+        <label>S/W/D of:</label> <span class="line">{{ receiptDetails.motherName }}</span>
+    </div>
+    <div class="section">
+        <label>Address:</label> <span class="line">{{ receiptDetails.presentAddress }}, {{ receiptDetails.presentPinCode
+            }}</span>
+    </div>
+    <div class="section">
+        <label>State/UT:</label> <span class="line">{{ receiptDetails.state }}</span>
+    </div>
+    <div class="section">
+        <label>Payment Mode:</label> <span class="line">{{ receiptDetails.paymentMode }}</span>
+    </div>
+    <div class="section">
+        <label>Payment Date:</label> <span class="line">{{ receiptDetails.paymentDate }}</span>
+    </div>
+    <div class="section">
+        <label>Received Membership Fee Rs:</label> <span class="line">{{ receiptDetails.membershipFee }}</span>
+    </div>
+    <div class="section">
+        <label>Received Share Application Money Rs:</label> <span class="line">{{ receiptDetails.shareApplicationMoney
+            }}</span>
+    </div>
+    <div class="section">
+        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails.totalAmountFigures }}</span>
+    </div>
+    <div class="section">
+        <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails.totalAmountWords }}</span>
+    </div>
+    <hr>
+    <div class="footer">
+        <p>This receipt confirms the payment made towards your Membership Subscription for the stated financial year. We
+            are currently processing your application and will confirm your membership status shortly.</p>
+        <p>Thank you for choosing to be a part of our society. If you have any queries or require further assistance,
+            please contact us using the details provided above.</p>
+        <br>
+
+        <img src="https://wakeupcoders.com/assets/img/signn.png" alt="" srcset="" height="60" width="160">
+        <p>__________________________</p>
+        <p>Treasurer/Authorized person</p>
+    </div>
+</div>
+
+
+<div class="container receipt" *ngIf="!isLoading">
+    <button class="btn btn-dark" (click)="printReceipt('printReceipt')" *ngIf="!isLoading">Print Receipt</button>
+    &nbsp;<button class="btn btn-secondary" [routerLink]="['/certificate', ordinaryFormId]"
+        *ngIf="!isLoading">Certificate</button>
+    &nbsp;<button class="btn btn-success" [routerLink]="['/viewordinary', ordinaryFormId]" *ngIf="!isLoading">View
+        Details</button>
+</div>

@@ -75,13 +75,10 @@
     }
 
     .text_underline {
-        text-decoration: underline;
-        text-decoration-style: dotted;
-        text-underline-offset: 4px;
-        color: black;
-        font-weight: 200;
-        font-style: italic;
-        content: "....";
+      border-bottom: 1px dashed #000;
+      margin: 0 10px;
+      /* display: inline-block; */
+      width: 300px;
       }
       
       
