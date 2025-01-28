@@ -345,7 +345,7 @@
 
 
 
-      <div class="mb-3">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
         <label>Receipt Number</label>
         <input formControlName="receiptNumber" class="form-control" type="number" />
         <div class="text-danger"
@@ -358,6 +358,28 @@
         </div>
       </div>
 
+
+
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3 mb-3" *ngIf="editMode">
+        <label>Attachments</label>
+        <div class="file-upload">
+          <input type="file" (change)="onFileSelected($event)" />
+          <a (click)="uploadFile()" class="btn btn-dark">Upload</a>
+        </div>
+
+        <hr>
+        <div class="file-card" *ngFor="let attachment of selectedMember.attachments">
+          <div class="file-info">
+            <p>{{attachment}}</p>
+          </div>
+          <div class="file-actions">
+            <button class="view-btn" >View</button>
+            <button class="delete-btn">Delete</button>
+          </div>
+        </div>
+        
+        
+      </div>
 
       <!-- Submit Button -->
       <button class="btn btn-dark" type="submit" [disabled]="memberForm.invalid">Submit</button>

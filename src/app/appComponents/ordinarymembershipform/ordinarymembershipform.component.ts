@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,11 +17,15 @@ export class OrdinarymembershipformComponent implements OnInit {
   isLoading = false;
   ordinaryMembers;
   selectedMemberID;
+  selectedMember;
   editMode = false;
   p: number = 1;
-  
 
-  constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router) {
+  selectedFile: File | null = null;
+  readonly uploadUrl = 'https://uammcl-membership-backend.onrender.com/api/uploads/uploadFile';
+
+
+  constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router, private http: HttpClient) {
     this.memberForm = this.fb.group({
       nameOfApplicant: ['', [Validators.required]],
       membership_id: ['', [Validators.required]],
@@ -124,6 +129,7 @@ export class OrdinarymembershipformComponent implements OnInit {
 
     this.showForm(false);
     this.selectedMemberID = member._id;
+    this.selectedMember=member;
     this.editMode = true;
 
     // Populate the form with the member's data
@@ -204,7 +210,7 @@ export class OrdinarymembershipformComponent implements OnInit {
   }
 
 
-  
+
 
 
   showForm(status: boolean) {
@@ -223,6 +229,38 @@ export class OrdinarymembershipformComponent implements OnInit {
 
     // Redirect to the constructed URL
     window.open(url, '_blank');
+  }
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
+  uploadFile(): void {
+    if (!this.selectedFile) {
+      alert('Please select a file first!');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+
+    this.http.post(this.uploadUrl, formData).subscribe({
+      next: (response) => {
+        console.log('File uploaded successfully', response);
+        this.http.put('https://uammcl-membership-backend.onrender.com/api/OM/updateAttachments/' + this.selectedMemberID, { "filename": response["filePath"] }).subscribe(res => {
+          console.log(res);
+        })
+        alert('File uploaded successfully!');
+      },
+      error: (error) => {
+        console.error('Error uploading file', error);
+        alert('Error uploading file. Please try again.');
+      }
+    });
   }
 
 }
