@@ -129,7 +129,7 @@ export class OrdinarymembershipformComponent implements OnInit {
 
     this.showForm(false);
     this.selectedMemberID = member._id;
-    this.selectedMember=member;
+    this.selectedMember = member;
     this.editMode = true;
 
     // Populate the form with the member's data
@@ -261,6 +261,41 @@ export class OrdinarymembershipformComponent implements OnInit {
         alert('Error uploading file. Please try again.');
       }
     });
+  }
+
+
+  onView(attachment) {
+    const baseUrl = 'https://uammcl-membership-backend.onrender.com/uploads/';
+    const url = `${baseUrl}/${encodeURIComponent(attachment)}`; // Add the input value as a query parameter
+
+    // Redirect to the constructed URL
+    window.open(url, '_blank');
+
+  }
+
+  onDeleteAttachment(attachment) {
+    const url = 'https://uammcl-membership-backend.onrender.com/api/uploads/deleteFile'; // Replace with your API endpoint
+    const body = { attachmentName: attachment };
+
+
+    this.http.request('DELETE', 'https://uammcl-membership-backend.onrender.com/api/OM/removeAttachment/'+this.selectedMemberID, {body: body,}).subscribe({
+      next: (response) => {
+        this.http.request('DELETE', url, {body: body,}).subscribe({
+          next: (response) => {
+            console.log('Attachment deleted successfully:', response);
+          },
+          error: (error) => {
+            console.error('Error deleting attachment:', error);
+          },
+      });
+        console.log('Attachment deleted successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error deleting attachment:', error);
+      },
+    });
+  
+  
   }
 
 }

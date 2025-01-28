@@ -373,8 +373,8 @@
             <p>{{attachment}}</p>
           </div>
           <div class="file-actions">
-            <button class="view-btn" >View</button>
-            <button class="delete-btn">Delete</button>
+            <button class="view-btn" (click)="onView(attachment)">View</button>
+            <button class="delete-btn" (click)="onDeleteAttachment(attachment)">Delete</button>
           </div>
         </div>
         
