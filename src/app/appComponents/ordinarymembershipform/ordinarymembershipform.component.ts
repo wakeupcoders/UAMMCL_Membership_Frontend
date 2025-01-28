@@ -18,6 +18,7 @@ export class OrdinarymembershipformComponent implements OnInit {
   selectedMemberID;
   editMode = false;
   p: number = 1;
+  
 
   constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router) {
     this.memberForm = this.fb.group({
@@ -52,8 +53,8 @@ export class OrdinarymembershipformComponent implements OnInit {
         register_number: ['', Validators.required],
         certificate_number: ['', Validators.required],
         Holding_Iden_number: ['', Validators.required],
-        share_start_number: ['', [Validators.required, Validators.min(1)]],
-        share_end_number: ['', [Validators.required, Validators.min(1)]],
+        share_start_number: ['', [Validators.required, Validators.required]],
+        share_end_number: ['', [Validators.required, Validators.required]],
         // value_of_share: ['100', [Validators.required, Validators.min(1)]],
       }),
       receiptNumber: ['', [Validators.required, Validators.min(1)]],
@@ -209,6 +210,19 @@ export class OrdinarymembershipformComponent implements OnInit {
   showForm(status: boolean) {
     this.isTableView = status;
     this.memberForm.reset();
+  }
+
+  redirectToReport(inputValue: string): void {
+    if (!inputValue.trim()) {
+      alert('Please enter a value before exporting.');
+      return;
+    }
+
+    const baseUrl = 'https://uammcl-membership-backend.onrender.com/api/reports/downloadOM';
+    const url = `${baseUrl}/${encodeURIComponent(inputValue)}`; // Add the input value as a query parameter
+
+    // Redirect to the constructed URL
+    window.open(url, '_blank');
   }
 
 }

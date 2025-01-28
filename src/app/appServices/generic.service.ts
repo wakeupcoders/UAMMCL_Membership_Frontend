@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { config } from '../config';
+
 @Injectable({
   providedIn: 'root'
 })
 export class GenericService {
 
-  private apiUrl = 'https://uammcl-membership-backend.onrender.com'; // Replace with your API endpoint
+  private apiUrl = "https://uammcl-membership-backend.onrender.com"; // Replace with your API endpoint
 
   constructor(private http: HttpClient) { }
 

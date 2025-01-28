@@ -12,19 +12,19 @@
       <b>5 Km Talwara Milestone, P.O. Talwara, Teh. Mukerian, Distt. Hoshiarpur, Punjab - 144216, INDIA</b>
       <br><br>
       <div class="row">
-        <div class="col-md-4 text-left">
+        <div class="col-md-5 text-left">
           <p style="font-size: 15px;">Register Number: <span class="text_underline">
-              {{certficateDetails["certificateDetails"].register_number}}</span></p>
+              {{certficateDetails["certificateDetails"].register_number}}/{{certficateDetails.createdAt | date: 'yyyy'}}/UAMMCL</span></p>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-2 text-center">
           <p></p>
         </div>
-        <div class="col-md-4 text-right">
+        <div class="col-md-5 text-right">
           <p style="font-size: 15px;">Certificate Number: <span
-              class="text_underline">{{certficateDetails["certificateDetails"].certificate_number}}</span></p>
+              class="text_underline">{{certficateDetails["certificateDetails"].certificate_number}}/OM/{{certficateDetails.createdAt | date: 'yyyy'}}/UAMMCL</span></p>
         </div>
       </div>
-      <div class="student-name" style="margin-top: -20px;">
+      <div class="student-name" style="margin-top: -5px;">
         <p style="font-weight: bold; font-size: 18px;">This is to certify that Sh./Smt./Ms.</p>
         <span class="text_underline">{{certficateDetails.nameOfApplicant}}</span>
       </div>

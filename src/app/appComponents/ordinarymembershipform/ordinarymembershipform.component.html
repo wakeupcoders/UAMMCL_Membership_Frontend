@@ -367,12 +367,34 @@
 
   <div class="container mt-4" *ngIf="isTableView && ordinaryMembers.length>0">
     <h2>Ordinary Membership Data</h2>
+
+    
     <div class="btn-group" role="group" aria-label="Basic example">
 
-      <button class="btn btn-success" (click)="showForm(false)">Add New Member</button>
-      <a class="btn btn-primary" href="https://uammcl-membership-backend.onrender.com/api/reports/downloadOM"
-        target="_blank">Export</a>
+      <button class="btn btn-success" (click)="showForm(false)">New</button>
+
+        <!-- Input field with a template reference variable -->
+        <input 
+        #inputValue 
+        type="text" 
+        class="form-control" 
+        placeholder="Enter value" 
+      />
+      <!-- Button triggers the redirect method -->
+      <button 
+        class="btn btn-primary" 
+        (click)="redirectToReport(inputValue.value)">
+        Export
+      </button>
+
+    
     </div>
+
+      <!-- <a class="btn btn-primary" href="https://uammcl-membership-backend.onrender.com/api/reports/downloadOM"
+        target="_blank">Export</a> -->
+
+        
+        
     <br><br>
 
 
@@ -381,18 +403,17 @@
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
-            <th>Reg. No.</th>
-            <th>Cert. No.</th>
+            <th>Reg#</th>
+            <th>Cert#</th>
             <th>Name</th>
-            <th>Memb. ID</th>
+            <th>Member#</th>
             <th>State</th>
             <th>Shares</th>
             <th>Value</th>
-            <th>Total Value</th>
-            <th>Start No.</th>
-            <th>End No.</th>
+            <th>Total </th>
+            <th>Start</th>
+            <th>End</th>
             <th>Date</th>
-            <th>Year</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -409,7 +430,7 @@
             <td>{{member["certificateDetails"].share_start_number}}</td>
             <td>{{member["certificateDetails"].share_end_number}}</td>
             <td>{{member.createdAt | date: 'dd, MMMM yyyy'}}</td>
-            <td>{{member.createdAt | date: 'yyyy'}}</td>
+            <!-- <td>{{member.createdAt | date: 'yyyy'}}</td> -->
             <td>
               <div class="btn-group" role="group" aria-label="Basic example">
                 <button class="btn btn-primary btn-sm" (click)="onEditMember(member)"><svg
