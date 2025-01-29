@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GenericService } from 'src/app/appServices/generic.service';
+import { config } from 'src/app/config';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,9 +21,9 @@ export class OrdinarymembershipformComponent implements OnInit {
   selectedMember;
   editMode = false;
   p: number = 1;
+  uploadMessage = '';
 
   selectedFile: File | null = null;
-  readonly uploadUrl = 'https://uammcl-membership-backend.onrender.com/api/uploads/uploadFile';
 
 
   constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router, private http: HttpClient) {
@@ -124,7 +125,6 @@ export class OrdinarymembershipformComponent implements OnInit {
     })
   }
 
-
   onEditMember(member: any) {
 
     this.showForm(false);
@@ -176,7 +176,6 @@ export class OrdinarymembershipformComponent implements OnInit {
     // this.showForm(true);
   }
 
-
   deletePopup(id: string): void {
     Swal.fire({
       title: 'Are you sure?',
@@ -195,7 +194,6 @@ export class OrdinarymembershipformComponent implements OnInit {
     });
   }
 
-
   onDelete(id) {
     this.isLoading = true;
     this.genericService.DeleteOrdinaryMembershipForm(id).subscribe(res => {
@@ -208,9 +206,6 @@ export class OrdinarymembershipformComponent implements OnInit {
   onGenerateCertificate(id: string) {
     this.router.navigate(['/certificate', id]);
   }
-
-
-
 
 
   showForm(status: boolean) {
@@ -245,27 +240,24 @@ export class OrdinarymembershipformComponent implements OnInit {
       return;
     }
 
+    this.uploadMessage = "Uploading ... Please Wait !!"
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
-    this.http.post(this.uploadUrl, formData).subscribe({
-      next: (response) => {
-        console.log('File uploaded successfully', response);
-        this.http.put('https://uammcl-membership-backend.onrender.com/api/OM/updateAttachments/' + this.selectedMemberID, { "filename": response["filePath"] }).subscribe(res => {
-          console.log(res);
-        })
-        alert('File uploaded successfully!');
-      },
-      error: (error) => {
-        console.error('Error uploading file', error);
-        alert('Error uploading file. Please try again.');
-      }
-    });
+    this.genericService.uploadOrdinaryAttachments(formData, this.selectedMemberID).subscribe(res => {
+      this.uploadMessage = "File Uploaded Successfully";
+      this.selectedMember.attachments = JSON.parse(JSON.stringify(res.attachments));
+
+      setTimeout(() => {
+        this.uploadMessage = "";
+      }, 3000);
+
+    })
   }
 
 
   onView(attachment) {
-    const baseUrl = 'https://uammcl-membership-backend.onrender.com/uploads/';
+    const baseUrl = config.BASE_URL + '/uploads/';
     const url = `${baseUrl}/${encodeURIComponent(attachment)}`; // Add the input value as a query parameter
 
     // Redirect to the constructed URL
@@ -273,29 +265,23 @@ export class OrdinarymembershipformComponent implements OnInit {
 
   }
 
-  onDeleteAttachment(attachment) {
-    const url = 'https://uammcl-membership-backend.onrender.com/api/uploads/deleteFile'; // Replace with your API endpoint
-    const body = { attachmentName: attachment };
-
-
-    this.http.request('DELETE', 'https://uammcl-membership-backend.onrender.com/api/OM/removeAttachment/'+this.selectedMemberID, {body: body,}).subscribe({
+  onDeleteAttachment(attachmentname: any) {
+    const fileName=attachmentname;
+    this.uploadMessage = "Deleting ... Please Wait !!"
+    this.genericService.deleteOrdinaryAttachment(this.selectedMemberID, { attachmentName: attachmentname }).subscribe({
       next: (response) => {
-        this.http.request('DELETE', url, {body: body,}).subscribe({
-          next: (response) => {
-            console.log('Attachment deleted successfully:', response);
-          },
-          error: (error) => {
-            console.error('Error deleting attachment:', error);
-          },
-      });
-        console.log('Attachment deleted successfully:', response);
+
+        this.selectedMember.attachments =  this.selectedMember.attachments.filter(item => item !== fileName);
+        this.uploadMessage = "File Deleted Successfully...";
+        setTimeout(() => {
+          this.uploadMessage = "";
+        }, 3000);
+        console.log('Second attachment deleted successfully:', response);
       },
       error: (error) => {
         console.error('Error deleting attachment:', error);
-      },
+      }
     });
-  
-  
   }
 
 }

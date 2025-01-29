@@ -34,21 +34,4 @@
     cursor: pointer;
   }
   
-  .view-btn {
-    background-color: #010b16;
-    color: white;
-  }
-  
-  .view-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .delete-btn {
-    background-color: #dc3545;
-    color: white;
-  }
-  
-  .delete-btn:hover {
-    background-color: #b02a37;
-  }
   

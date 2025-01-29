@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 import { config } from '../config';
 
@@ -9,7 +9,7 @@ import { config } from '../config';
 })
 export class GenericService {
 
-  private apiUrl = "https://uammcl-membership-backend.onrender.com"; // Replace with your API endpoint
+  private apiUrl = `${config.BASE_URL}`; // Replace with your API endpoint
 
   constructor(private http: HttpClient) { }
 
@@ -39,5 +39,25 @@ export class GenericService {
   }
 
 
+  uploadOrdinaryAttachments(formData: FormData, memberId: string): Observable<any> {
+    return this.http.post(this.apiUrl + '/api/uploads/uploadFile', formData).pipe(
+      switchMap((response: any) => {
+        console.log('File uploaded successfully', response);
+        return this.http.put(this.apiUrl + '/api/OM/updateAttachments/' + memberId, { "filename": response["filePath"] });
+      })
+    );
+  }
+
+  deleteOrdinaryAttachment(selectedMemberID: string, body: any): Observable<any> {
+    const url = `${this.apiUrl}/api/OM/removeAttachment/${selectedMemberID}`;
+console.log(body);
+    return this.http.request('DELETE', url, { body }).pipe(
+      switchMap((response) => {
+        console.log('Attachment deleted successfully:', response);
+        // Assuming you want to perform another DELETE request
+        return this.http.request('DELETE', `${this.apiUrl}/api/uploads/deleteFile`, { body:{"filename":body.attachmentName} });
+      })
+    );
+  }
 
 }

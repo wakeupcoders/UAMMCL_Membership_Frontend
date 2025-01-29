@@ -365,6 +365,7 @@
         <div class="file-upload">
           <input type="file" (change)="onFileSelected($event)" />
           <a (click)="uploadFile()" class="btn btn-dark">Upload</a>
+          <p class="text-success">{{uploadMessage}}</p>
         </div>
 
         <hr>
@@ -373,8 +374,8 @@
             <p>{{attachment}}</p>
           </div>
           <div class="file-actions">
-            <button class="view-btn" (click)="onView(attachment)">View</button>
-            <button class="delete-btn" (click)="onDeleteAttachment(attachment)">Delete</button>
+            <a class="btn btn-dark" (click)="onView(attachment)">View</a>
+            <a class="btn btn-danger" (click)="onDeleteAttachment(attachment)">Delete</a>
           </div>
         </div>
         
