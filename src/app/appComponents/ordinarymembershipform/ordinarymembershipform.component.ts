@@ -266,22 +266,40 @@ export class OrdinarymembershipformComponent implements OnInit {
   }
 
   onDeleteAttachment(attachmentname: any) {
-    const fileName=attachmentname;
-    this.uploadMessage = "Deleting ... Please Wait !!"
-    this.genericService.deleteOrdinaryAttachment(this.selectedMemberID, { attachmentName: attachmentname }).subscribe({
-      next: (response) => {
 
-        this.selectedMember.attachments =  this.selectedMember.attachments.filter(item => item !== fileName);
-        this.uploadMessage = "File Deleted Successfully...";
-        setTimeout(() => {
-          this.uploadMessage = "";
-        }, 3000);
-        console.log('Second attachment deleted successfully:', response);
-      },
-      error: (error) => {
-        console.error('Error deleting attachment:', error);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Call your delete function here
+        const fileName = attachmentname;
+        this.uploadMessage = "Deleting ... Please Wait !!"
+        this.genericService.deleteOrdinaryAttachment(this.selectedMemberID, { attachmentName: attachmentname }).subscribe({
+          next: (response) => {
+
+            this.selectedMember.attachments = this.selectedMember.attachments.filter(item => item !== fileName);
+            this.uploadMessage = "File Deleted Successfully...";
+            setTimeout(() => {
+              this.uploadMessage = "";
+            }, 3000);
+            console.log('Second attachment deleted successfully:', response);
+          },
+          error: (error) => {
+            console.error('Error deleting attachment:', error);
+          }
+        });
       }
     });
+
+
+
   }
 
 }
