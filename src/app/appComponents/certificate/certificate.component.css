@@ -8,7 +8,7 @@
     }
 
     .certificate {
-      border: 10px solid #0C5280;
+      border: 12px solid #355031;
       padding: 25px;
       height: 650px;
       position: relative;
@@ -21,7 +21,7 @@
       bottom: 0px;
       right: 0px;
       position: absolute;
-      /* background-image: url(https://image.ibb.co/ckrVv7/water_mark_logo.png); */
+      background-image: url(../../../assets/img/watermark.png);
       background-size: 100%;
       z-index: -1;
     }
@@ -47,7 +47,7 @@
 
       font-weight: 400;
       font-size: 32px;
-      color: #0C5280;
+      color: #355031;
       margin: 0px;
     }
 
@@ -70,7 +70,8 @@
 
       text-align: center;
       text-align: justify;
-      line-height: 1.8;
+      line-height: 1.7;
+
       /* text-align: left; */
     }
 
@@ -92,3 +93,6 @@
       }
       
       
+      .green-color{
+        color:#355031;
+      }
