@@ -13,6 +13,8 @@ import { CertificateComponent } from './appComponents/certificate/certificate.co
 import { PageNotFoundComponent } from './appComponents/page-not-found/page-not-found.component';
 import { ViewordinaryformComponent } from './appComponents/viewordinaryform/viewordinaryform.component';
 import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordinaryreceipt.component';
+import { SignupComponent } from './appComponents/signup/signup.component';
+import { LoginComponent } from './appComponents/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordina
     CertificateComponent,
     PageNotFoundComponent,
     ViewordinaryformComponent,
-    OrdinaryreceiptComponent
+    OrdinaryreceiptComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
