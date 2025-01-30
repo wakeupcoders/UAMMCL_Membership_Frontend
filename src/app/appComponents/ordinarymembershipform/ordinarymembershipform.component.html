@@ -7,8 +7,7 @@
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <div class="card text-center">
-      <img
-        src="https://assets-v2.lottiefiles.com/a/0e30b444-117c-11ee-9b0d-0fd3804d46cd/BkQxD7wtnZ.gif"
+      <img src="https://assets-v2.lottiefiles.com/a/0e30b444-117c-11ee-9b0d-0fd3804d46cd/BkQxD7wtnZ.gif"
         class="card-img-top mx-auto d-block" alt="No Records">
       <div class="card-body">
         <h3 class="card-title mb-3">No Records Found</h3>
@@ -345,19 +344,42 @@
 
 
 
-      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
-        <label>Receipt Number</label>
-        <input formControlName="receiptNumber" class="form-control" type="number" />
-        <div class="text-danger"
-          *ngIf="memberForm.get('receiptNumber')?.touched && memberForm.get('receiptNumber')?.errors?.['required']">
-          Receipt Number is required.
+
+      <div class="  shadow-lg p-3 mb-5 bg-white rounded p-3">
+        <h5>Payment Details</h5>
+
+        <div class="mb-3">
+          <label>Receipt Number</label>
+          <input formControlName="receiptNumber" class="form-control" type="number" />
+          <div class="text-danger"
+            *ngIf="memberForm.get('receiptNumber')?.touched && memberForm.get('receiptNumber')?.errors?.['required']">
+            Receipt Number is required.
+          </div>
+          <div class="text-danger"
+            *ngIf="memberForm.get('receiptNumber')?.touched && memberForm.get('receiptNumber')?.errors?.['min']">
+            Receipt Number must be greater than 0.
+          </div>
         </div>
-        <div class="text-danger"
-          *ngIf="memberForm.get('receiptNumber')?.touched && memberForm.get('receiptNumber')?.errors?.['min']">
-          Receipt Number must be greater than 0.
+
+        <div class="mb-3">
+          <label>Payment Mode</label>
+          <select formControlName="paymentMode" class="form-control">
+            <option value="">Select</option>
+            <option value="NEFT">NEFT</option>
+            <option value="IMPS">IMPS</option>
+            <option value="RTGS">RTGS</option>
+            <option value="CHEQUE">CHEQUE</option>
+            <option value="DEMAND DRAFT">DEMAND DRAFT</option>
+            <option value="CASH">CASH</option>
+            <option value="UPI">UPI</option>
+            <option value="OTHERS">OTHERS</option>
+          </select>
+          <div class="text-danger"
+            *ngIf="memberForm.get('maritalStatus')?.touched && memberForm.get('maritalStatus')?.errors?.['required']">
+            Marital Status is required.
+          </div>
         </div>
       </div>
-
 
 
       <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3 mb-3" *ngIf="editMode==true">
@@ -378,8 +400,8 @@
             <a class="btn btn-danger" (click)="onDeleteAttachment(attachment)">Delete</a>
           </div>
         </div>
-        
-        
+
+
       </div>
 
       <!-- Submit Button -->
@@ -391,33 +413,26 @@
   <div class="container mt-4" *ngIf="isTableView && ordinaryMembers.length>0">
     <h2>Ordinary Membership Data</h2>
 
-    
+
     <div class="btn-group" role="group" aria-label="Basic example">
 
       <button class="btn btn-success" (click)="showForm(false)">New</button>
 
-        <!-- Input field with a template reference variable -->
-        <input 
-        #inputValue 
-        type="text" 
-        class="form-control" 
-        placeholder="Enter value" 
-      />
+      <!-- Input field with a template reference variable -->
+      <input #inputValue type="text" class="form-control" placeholder="Enter Member Id" />
       <!-- Button triggers the redirect method -->
-      <button 
-        class="btn btn-primary" 
-        (click)="redirectToReport(inputValue.value)">
+      <button class="btn btn-primary" (click)="redirectToReport(inputValue.value)">
         Export
       </button>
 
-    
+
     </div>
 
-      <!-- <a class="btn btn-primary" href="https://uammcl-membership-backend.onrender.com/api/reports/downloadOM"
+    <!-- <a class="btn btn-primary" href="https://uammcl-membership-backend.onrender.com/api/reports/downloadOM"
         target="_blank">Export</a> -->
 
-        
-        
+
+
     <br><br>
 
 
@@ -478,9 +493,12 @@
                   </svg></button>
 
 
-                  <button class="btn btn-success btn-sm" [routerLink]="['/viewordinary', member._id]"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                <button class="btn btn-success btn-sm" [routerLink]="['/viewordinary', member._id]"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                    viewBox="0 0 16 16">
+                    <path
+                      d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                   </svg></button>
               </div>
             </td>

@@ -64,6 +64,7 @@ export class OrdinarymembershipformComponent implements OnInit {
         // value_of_share: ['100', [Validators.required, Validators.min(1)]],
       }),
       receiptNumber: ['', [Validators.required, Validators.min(1)]],
+      paymentMode: ['', [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -170,6 +171,7 @@ export class OrdinarymembershipformComponent implements OnInit {
         value_of_share: member.certificateDetails?.value_of_share,
       },
       receiptNumber: member.receiptNumber,
+      paymentMode:member.paymentMode
     });
 
     // Additional logic if needed

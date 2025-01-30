@@ -40,20 +40,14 @@
         <label>Payment Mode:</label> <span class="line">{{ receiptDetails.paymentMode }}</span>
     </div>
     <div class="section">
-        <label>Payment Date:</label> <span class="line">{{ receiptDetails.paymentDate }}</span>
+        <label>Payment Date:</label> <span class="line">{{ receiptDetails.createdAt | date: 'dd, MMMM yyyy'  }}</span>
+    </div>
+ 
+    <div class="section">
+        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails.shares * 100 }} Rs. For {{receiptDetails.shares}} Shares.</span> 
     </div>
     <div class="section">
-        <label>Received Membership Fee Rs:</label> <span class="line">{{ receiptDetails.membershipFee }}</span>
-    </div>
-    <div class="section">
-        <label>Received Share Application Money Rs:</label> <span class="line">{{ receiptDetails.shareApplicationMoney
-            }}</span>
-    </div>
-    <div class="section">
-        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails.totalAmountFigures }}</span>
-    </div>
-    <div class="section">
-        <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails.totalAmountWords }}</span>
+        <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails.shares * 100 | numberToWords }} rupees only</span>
     </div>
     <hr>
     <div class="footer">

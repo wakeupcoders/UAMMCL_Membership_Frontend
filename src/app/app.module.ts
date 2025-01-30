@@ -15,6 +15,7 @@ import { ViewordinaryformComponent } from './appComponents/viewordinaryform/view
 import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordinaryreceipt.component';
 import { SignupComponent } from './appComponents/signup/signup.component';
 import { LoginComponent } from './appComponents/login/login.component';
+import { NumberToWordsPipe } from './appPipes/number-to-words.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './appComponents/login/login.component';
     ViewordinaryformComponent,
     OrdinaryreceiptComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    NumberToWordsPipe
   ],
   imports: [
     BrowserModule,
