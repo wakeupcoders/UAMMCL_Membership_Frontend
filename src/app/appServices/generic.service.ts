@@ -18,7 +18,6 @@ export class GenericService {
     return this.http.post(this.apiUrl + '/api/OM', data, { headers });
   }
 
-
   EditOrdinaryMembershipForm(data: any, id: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put(this.apiUrl + '/api/OM/' + id, data, { headers });
@@ -38,7 +37,6 @@ export class GenericService {
     return this.http.get(this.apiUrl + '/api/OM');
   }
 
-
   uploadOrdinaryAttachments(formData: FormData, memberId: string): Observable<any> {
     return this.http.post(this.apiUrl + '/api/uploads/uploadFile', formData).pipe(
       switchMap((response: any) => {
@@ -50,12 +48,12 @@ export class GenericService {
 
   deleteOrdinaryAttachment(selectedMemberID: string, body: any): Observable<any> {
     const url = `${this.apiUrl}/api/OM/removeAttachment/${selectedMemberID}`;
-console.log(body);
+    console.log(body);
     return this.http.request('DELETE', url, { body }).pipe(
       switchMap((response) => {
         console.log('Attachment deleted successfully:', response);
         // Assuming you want to perform another DELETE request
-        return this.http.request('DELETE', `${this.apiUrl}/api/uploads/deleteFile`, { body:{"filename":body.attachmentName} });
+        return this.http.request('DELETE', `${this.apiUrl}/api/uploads/deleteFile`, { body: { "filename": body.attachmentName } });
       })
     );
   }
