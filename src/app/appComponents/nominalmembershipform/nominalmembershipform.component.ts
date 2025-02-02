@@ -18,16 +18,16 @@ export class NominalmembershipformComponent implements OnInit {
   editMode = false;
   p: number = 1;
 
-  constructor(private fb: FormBuilder, private http:HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.registrationForm = this.fb.group({
-      registrationInformation: this.fb.group({
-        nameOfApplicant: ['John Doe 3'],
-        dateOfIncorporation: ['2025-01-15'],
+      registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
+        nameOfApplicant: [''],
+        dateOfIncorporation: [''],
         registeredAddress: this.fb.group({
-          state: ['California'],
-          city: ['Los Angeles'],
-          district: ['Central'],
-          tehsil: ['Downtown'],
+          state: [''],
+          city: [''],
+          district: [''],
+          tehsil: [''],
           pinCode: ['90001'],
           zone: ['West']
         })
@@ -60,10 +60,11 @@ export class NominalmembershipformComponent implements OnInit {
         })
       })
     });
+
   }
 
   ngOnInit(): void {
-    this.isTableView=true;
+    this.isTableView = true;
     this.onDisplay();
   }
 
@@ -82,10 +83,116 @@ export class NominalmembershipformComponent implements OnInit {
     })
   }
 
+  onEditMember(member: any) {
+
+    this.showForm(false);
+    this.selectedMemberID = member._id;
+    this.selectedMember = member;
+    this.editMode = true;
+
+    console.log(member);
+    console.log(member["idInformation"]?.pan);
+
+    this.registrationForm.patchValue({
+      registrationInformation: {
+        nameOfApplicant: member.registrationInformation.nameOfApplicant,
+        dateOfIncorporation: member.registrationInformation.dateOfIncorporation,
+        registeredAddress: {
+          state: member["registrationInformation"].registeredAddress?.state,
+          city: member["registrationInformation"].registeredAddress?.city,
+          district: member["registrationInformation"].registeredAddress?.district,
+          tehsil: member["registrationInformation"].registeredAddress?.tehsil,
+          pinCode: member["registrationInformation"].registeredAddress?.pinCode,
+          zone: member["registrationInformation"].registeredAddress?.zone
+        },
+      },
+      idInformation: {
+        pan: member["idInformation"]?.pan,
+        itan: member["idInformation"]?.itan,
+        gstNumber: member["idInformation"]?.gstNumber,
+        aadhar: member["idInformation"]?.aadhar,
+        idNumber: member["idInformation"]?.idNumber
+      },
+
+      contactInformation: {
+        mobileNo: member.contactInformation?.mobileNo,
+        emailId: member.contactInformation?.emailId,
+        panNo: member.contactInformation?.panNo,
+        registeredWithOtherExchange: member.contactInformation?.registeredWithOtherExchange,
+        nomineeName: member.contactInformation?.nomineeName,
+        licenseNo: member.contactInformation?.licenseNo
+      },
+        gstInformation: {
+        gstAvailable: member.gstInformation?.gstAvailable,
+        gstRegistrationNo: member.gstInformation?.gstRegistrationNo,
+        gstStateCode: member.gstInformation?.gstStateCode,
+        gstAddress: {
+          state: member.gstInformation?.gstAddress?.state,
+          city: member.gstInformation?.gstAddress?.city,
+          district: member.gstInformation?.gstAddress?.district,
+          tehsil: member.gstInformation?.gstAddress?.tehsil,
+          pinCode: member.gstInformation?.gstAddress?.pinCode
+        }
+      }
+
+
+    });
+
+    console.log(this.registrationForm.value);
+
+    // Populate the form with the member's data
+    // this.registrationForm.patchValue({
+    //   registrationInformation: {
+    //     nameOfApplicant: member.registrationInformation.nameOfApplicant,
+    //     dateOfIncorporation: member.registrationInformation.dateOfIncorporation
+    //   //   registeredAddress: {
+    //   //     state: member.registeredAddress?.state,
+    //   //     city: member.registeredAddress?.city,
+    //   //     district: member.registeredAddress?.district,
+    //   //     tehsil: member.registeredAddress?.tehsil,
+    //   //     pinCode: member.registeredAddress?.pinCode,
+    //   //     zone: member.registeredAddress?.zone
+    //   //   }
+    //   // },
+    //   // idInformation: {
+    //   //   pan: member.idInformation?.pan,
+    //   //   itan: member.idInformation?.itan,
+    //   //   gstNumber: member.idInformation?.gstNumber,
+    //   //   aadhar: member.idInformation?.aadhar,
+    //   //   idNumber: member.idInformation?.idNumber
+    //   // },
+    //   // contactInformation: {
+    //   //   mobileNo: member.contactInformation?.mobileNo,
+    //   //   emailId: member.contactInformation?.emailId,
+    //   //   panNo: member.contactInformation?.panNo,
+    //   //   registeredWithOtherExchange: member.contactInformation?.registeredWithOtherExchange,
+    //   //   nomineeName: member.contactInformation?.nomineeName,
+    //   //   licenseNo: member.contactInformation?.licenseNo
+    //   // },
+    //   // gstInformation: {
+    //   //   gstAvailable: member.gstInformation?.gstAvailable,
+    //   //   gstRegistrationNo: member.gstInformation?.gstRegistrationNo,
+    //   //   gstStateCode: member.gstInformation?.gstStateCode,
+    //   //   gstAddress: {
+    //   //     state: member.gstInformation?.gstAddress?.state,
+    //   //     city: member.gstInformation?.gstAddress?.city,
+    //   //     district: member.gstInformation?.gstAddress?.district,
+    //   //     tehsil: member.gstInformation?.gstAddress?.tehsil,
+    //   //     pinCode: member.gstInformation?.gstAddress?.pinCode
+    //   //   }
+    //   // }
+    //   }
+    // });
+
+
+    // Additional logic if needed
+    // this.showForm(true);
+  }
+
 
   onSubmit() {
 
-    this.http.post('https://uammcl-membership-backend.onrender.com/api/NM', this.registrationForm.value).subscribe(res=>{
+    this.http.post('https://uammcl-membership-backend.onrender.com/api/NM', this.registrationForm.value).subscribe(res => {
       console.log(res);
     });
 
