@@ -16,6 +16,7 @@ import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordina
 import { SignupComponent } from './appComponents/signup/signup.component';
 import { LoginComponent } from './appComponents/login/login.component';
 import { NumberToWordsPipe } from './appPipes/number-to-words.pipe';
+import { NominalmembershipformComponent } from './appComponents/nominalmembershipform/nominalmembershipform.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NumberToWordsPipe } from './appPipes/number-to-words.pipe';
     OrdinaryreceiptComponent,
     SignupComponent,
     LoginComponent,
-    NumberToWordsPipe
+    NumberToWordsPipe,
+    NominalmembershipformComponent
   ],
   imports: [
     BrowserModule,

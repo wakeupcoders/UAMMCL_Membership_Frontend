@@ -1,0 +1,203 @@
+
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div class="row" *ngIf="!isLoading && nominalMembers.length<=0 && isTableView">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card text-center">
+      <img src="https://assets-v2.lottiefiles.com/a/0e30b444-117c-11ee-9b0d-0fd3804d46cd/BkQxD7wtnZ.gif"
+        class="card-img-top mx-auto d-block" alt="No Records">
+      <div class="card-body">
+        <h3 class="card-title mb-3">No Records Found</h3>
+        <p class="card-text mb-4">It looks like there are no records available. You can add new records or contact
+          support for assistance.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-dark btn-lg" (click)="showForm(false)">Add Records</button>
+          <a href="https://wakeupcoders.com" target="_blank" class="btn btn-secondary btn-lg">Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+
+
+
+
+
+
+<div class="container">
+  <div class="container" *ngIf="!isLoading">
+    <span *ngIf="!isTableView">
+    <h2>Registration Form</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      
+      <fieldset>
+        <legend>Registration Information</legend>
+        <label>Name of Applicant:
+          <input type="text" formControlName="nameOfApplicant">
+        </label>
+        <label>Date of Incorporation:
+          <input type="date" formControlName="dateOfIncorporation">
+        </label>
+      </fieldset>
+      
+      <fieldset formGroupName="registeredAddress">
+        <legend>Registered Address</legend>
+        <label>State:
+          <input type="text" formControlName="state">
+        </label>
+        <label>City:
+          <input type="text" formControlName="city">
+        </label>
+        <label>District:
+          <input type="text" formControlName="district">
+        </label>
+        <label>Tehsil:
+          <input type="text" formControlName="tehsil">
+        </label>
+        <label>Pin Code:
+          <input type="text" formControlName="pinCode">
+        </label>
+        <label>Zone:
+          <input type="text" formControlName="zone">
+        </label>
+      </fieldset>
+      
+      <fieldset formGroupName="idInformation">
+        <legend>ID Information</legend>
+        <label>PAN:
+          <input type="text" formControlName="pan">
+        </label>
+        <label>ITAN:
+          <input type="text" formControlName="itan">
+        </label>
+        <label>GST Number:
+          <input type="text" formControlName="gstNumber">
+        </label>
+        <label>Aadhar:
+          <input type="text" formControlName="aadhar">
+        </label>
+        <label>ID Number:
+          <input type="text" formControlName="idNumber">
+        </label>
+      </fieldset>
+      
+      <fieldset formGroupName="contactInformation">
+        <legend>Contact Information</legend>
+        <label>Mobile No:
+          <input type="text" formControlName="mobileNo">
+        </label>
+        <label>Email ID:
+          <input type="email" formControlName="emailId">
+        </label>
+        <label>Nominee Name:
+          <input type="text" formControlName="nomineeName">
+        </label>
+        <label>License No:
+          <input type="text" formControlName="licenseNo">
+        </label>
+        <label>
+          <input type="checkbox" formControlName="registeredWithOtherExchange"> Registered with Other Exchange
+        </label>
+      </fieldset>
+      
+      <fieldset formGroupName="gstInformation">
+        <legend>GST Information</legend>
+        <label>GST Available:
+          <input type="checkbox" formControlName="gstAvailable">
+        </label>
+        <label>GST Registration No:
+          <input type="text" formControlName="gstRegistrationNo">
+        </label>
+        <label>GST State Code:
+          <input type="text" formControlName="gstStateCode">
+        </label>
+        <fieldset formGroupName="gstAddress">
+          <legend>GST Address</legend>
+          <label>State:
+            <input type="text" formControlName="state">
+          </label>
+          <label>City:
+            <input type="text" formControlName="city">
+          </label>
+          <label>District:
+            <input type="text" formControlName="district">
+          </label>
+          <label>Tehsil:
+            <input type="text" formControlName="tehsil">
+          </label>
+          <label>Pin Code:
+            <input type="text" formControlName="pinCode">
+          </label>
+        </fieldset>
+      </fieldset>
+      
+      <button type="submit">Submit</button>
+      <button class="btn btn-danger" (click)="showForm(true)">Cancel</button>
+    </form>
+    </span>
+
+    <div class="container mt-4" *ngIf="isTableView && nominalMembers.length>0">
+      <h2>Nominal Membership Data</h2>
+  
+  
+      <div class="btn-group" role="group" aria-label="Basic example">
+  
+        <button class="btn btn-success" (click)="showForm(false)">New</button>
+  
+        <!-- Input field with a template reference variable -->
+        <input #inputValue type="text" class="form-control" placeholder="Enter Member Id" />
+        <!-- Button triggers the redirect method -->
+        <!-- <button class="btn btn-primary" (click)="redirectToReport(inputValue.value)">
+          Export
+        </button> -->
+  
+  
+      </div>
+  
+      <!-- <a class="btn btn-primary" href="https://uammcl-membership-backend.onrender.com/api/reports/downloadOM"
+          target="_blank">Export</a> -->
+  
+  
+  
+      <br><br>
+  
+  
+  
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>Reg#</th>
+              <th>Cert#</th>
+              <th>Name</th>
+              <th>Member#</th>
+              <th>State</th>
+              <th>Shares</th>
+              <th>Value</th>
+              <th>Total </th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let member of nominalMembers | paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{member["certificateDetails"].register_number}}</td>
+           
+            
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+  
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+  

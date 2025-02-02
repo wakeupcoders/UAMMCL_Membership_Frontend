@@ -8,10 +8,12 @@ import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordina
 import { SignupComponent } from './appComponents/signup/signup.component';
 import { LoginComponent } from './appComponents/login/login.component';
 import { AuthGuard } from './appGuards/auth.guard';
+import { NominalmembershipformComponent } from './appComponents/nominalmembershipform/nominalmembershipform.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Default route
   { path: 'ordinary', component: OrdinarymembershipformComponent, canActivate: [AuthGuard] },
+  { path: 'nominal', component: NominalmembershipformComponent, canActivate: [AuthGuard] },
   { path: 'certificate/:id', component: CertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
   { path: 'viewordinary/:id', component: ViewordinaryformComponent,canActivate: [AuthGuard] }, // Dynamic route
   { path: 'receiptordinary/:id', component: OrdinaryreceiptComponent, canActivate: [AuthGuard] }, // Dynamic route
