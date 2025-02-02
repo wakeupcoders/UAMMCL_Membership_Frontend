@@ -44,13 +44,13 @@ export class NominalService {
       return this.http.post(this.apiUrl + '/api/uploads/uploadFile', formData).pipe(
         switchMap((response: any) => {
           console.log('File uploaded successfully', response);
-          return this.http.put(this.apiUrl + '/api/OM/updateNominalAttachments/' + memberId, { "filename": response["filePath"] });
+          return this.http.put(this.apiUrl + '/api/NM/updateNominalAttachments/' + memberId, { "filename": response["filePath"] });
         })
       );
     }
   
     deleteNominalAttachment(selectedMemberID: string, body: any): Observable<any> {
-      const url = `${this.apiUrl}/api/OM/removeNominalAttachment/${selectedMemberID}`;
+      const url = `${this.apiUrl}/api/NM/removeNominalAttachment/${selectedMemberID}`;
       console.log(body);
       return this.http.request('DELETE', url, { body }).pipe(
         switchMap((response) => {
