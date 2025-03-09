@@ -26,6 +26,9 @@ export class NominalmembershipformComponent implements OnInit {
 
   uploadMessage = '';
 
+  private apiUrl = `${config.BASE_URL}`; // Replace with your API endpoint
+  
+
   selectedFile: File | null = null;
 
   constructor(private fb: FormBuilder, private nominalService: NominalService,  private router: Router) {
@@ -299,5 +302,18 @@ export class NominalmembershipformComponent implements OnInit {
 
   onGenerateCertificate(id: string) {
     this.router.navigate(['/nominalcertificate', id]);
+  }
+
+  redirectToReport(inputValue: string): void {
+    if (!inputValue.trim()) {
+      alert('Please enter a value before exporting.');
+      return;
+    }
+
+    const baseUrl = `${this.apiUrl}/api/reports/downloadNM`;
+    const url = `${baseUrl}/${encodeURIComponent(inputValue)}`; // Add the input value as a query parameter
+
+    // Redirect to the constructed URL
+    window.open(url, '_blank');
   }
 }

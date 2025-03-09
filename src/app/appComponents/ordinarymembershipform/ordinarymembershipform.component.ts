@@ -6,6 +6,7 @@ import { GenericService } from 'src/app/appServices/generic.service';
 import { config } from 'src/app/config';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-ordinarymembershipform',
   templateUrl: './ordinarymembershipform.component.html',
@@ -24,6 +25,9 @@ export class OrdinarymembershipformComponent implements OnInit {
   uploadMessage = '';
 
   selectedFile: File | null = null;
+
+   private apiUrl = `${config.BASE_URL}`; // Replace with your API endpoint
+  
 
 
   constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router, private http: HttpClient) {
@@ -221,7 +225,7 @@ export class OrdinarymembershipformComponent implements OnInit {
       return;
     }
 
-    const baseUrl = 'https://uammcl-membership-backend.onrender.com/api/reports/downloadOM';
+    const baseUrl = `${this.apiUrl}/api/reports/downloadOM`;
     const url = `${baseUrl}/${encodeURIComponent(inputValue)}`; // Add the input value as a query parameter
 
     // Redirect to the constructed URL
