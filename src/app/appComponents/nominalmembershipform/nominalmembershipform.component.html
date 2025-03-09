@@ -37,6 +37,15 @@
           <h4>Registration Form</h4>
         </div>
         <div class="card-body">
+
+          <div class="mb-3">
+            <label>Shares</label>
+            <input formControlName="shares" class="form-control" type="number" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('shares')?.touched && registrationForm.get('shares')?.errors?.['required']">
+              Shares are required.
+            </div>
+          </div>
           
           <!-- Registration Information -->
           <fieldset formGroupName="registrationInformation" class="shadow-lg p-3 mb-5 bg-white rounded">  <!-- 👈 Add this wrapper -->
@@ -185,6 +194,107 @@
             </fieldset>
           </fieldset>
 
+           <!-- Certificate Details Card -->
+      <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+        <h5>Certificate Details</h5>
+        <div formGroupName="certificateDetails">
+          <div class="mb-3">
+            <label>Register Number</label>
+            <input formControlName="register_number" class="form-control" type="text" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.register_number')?.touched && registrationForm.get('certificateDetails.register_number')?.errors?.['required']">
+              Register Number is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Certificate Number</label>
+            <input formControlName="certificate_number" class="form-control" type="text" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.certificate_number')?.touched && registrationForm.get('certificateDetails.certificate_number')?.errors?.['required']">
+              Certificate Number is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Holding Identification Number</label>
+            <input formControlName="Holding_Iden_number" class="form-control" type="text" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.Holding_Iden_number')?.touched && registrationForm.get('certificateDetails.Holding_Iden_number')?.errors?.['required']">
+              Holding Identification Number is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Share Start Number</label>
+            <input formControlName="share_start_number" class="form-control" type="number" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.share_start_number')?.touched && registrationForm.get('certificateDetails.share_start_number')?.errors?.['required']">
+              Share Start Number is required.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label>Share End Number</label>
+            <input formControlName="share_end_number" class="form-control" type="number" />
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.share_end_number')?.touched && registrationForm.get('certificateDetails.share_end_number')?.errors?.['required']">
+              Share End Number is required.
+            </div>
+          </div>
+
+
+          <!-- <div class="mb-3">
+            <label>Value of Share</label>
+            <input formControlName="value_of_share" class="form-control" type="text"/>
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.value_of_share')?.touched && registrationForm.get('certificateDetails.value_of_share')?.errors?.['required']">
+              Value of Share is required.
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+
+
+
+
+      <div class="  shadow-lg p-3 mb-5 bg-white rounded p-3">
+        <h5>Payment Details</h5>
+
+        <div class="mb-3">
+          <label>Receipt Number</label>
+          <input formControlName="receiptNumber" class="form-control" type="number" />
+          <div class="text-danger"
+            *ngIf="registrationForm.get('receiptNumber')?.touched && registrationForm.get('receiptNumber')?.errors?.['required']">
+            Receipt Number is required.
+          </div>
+          <div class="text-danger"
+            *ngIf="registrationForm.get('receiptNumber')?.touched && registrationForm.get('receiptNumber')?.errors?.['min']">
+            Receipt Number must be greater than 0.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>Payment Mode</label>
+          <select formControlName="paymentMode" class="form-control">
+            <option value="">Select</option>
+            <option value="NEFT">NEFT</option>
+            <option value="IMPS">IMPS</option>
+            <option value="RTGS">RTGS</option>
+            <option value="CHEQUE">CHEQUE</option>
+            <option value="DEMAND DRAFT">DEMAND DRAFT</option>
+            <option value="CASH">CASH</option>
+            <option value="UPI">UPI</option>
+            <option value="OTHERS">OTHERS</option>
+          </select>
+          <!-- <div class="text-danger"
+            *ngIf="registrationForm.get('maritalStatus')?.touched && registrationForm.get('maritalStatus')?.errors?.['required']">
+            Marital Status is required.
+          </div> -->
+        </div>
+      </div>
+
           <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3 mb-3" *ngIf="editMode==true">
             <label>Attachments</label>
             <div class="file-upload">
@@ -253,8 +363,13 @@
               <th>Name</th>
               <th>Incorporation Date</th>
               <th>State</th>
-              <th>City</th>
-              <th>Distt.</th>
+              <th>Shares</th>
+              <th>Value</th>
+              <th>Total</th>
+              <th>Start</th>
+              <th>End</th>
+              <!-- <th>City</th>
+              <th>Distt.</th> -->
               <th>Date</th>
               <th>Action</th>
             </tr>
@@ -264,10 +379,15 @@
               <td>{{member["registrationInformation"].nameOfApplicant}}</td>
               <td>{{member["registrationInformation"].dateOfIncorporation | date: 'dd, MMMM yyyy'}}</td>
               <td>{{member["registrationInformation"]["registeredAddress"].state}}</td>
-              <td>{{member["registrationInformation"]["registeredAddress"].city}}</td>
-              <td>{{member["registrationInformation"]["registeredAddress"].district}}</td>
+              <td>{{member.shares}}</td>
+              <td>{{member["certificateDetails"].value_of_share}}</td>
+              <td>{{member["certificateDetails"].value_of_share*member.shares}}</td>
+              <td>{{member["certificateDetails"].share_start_number}}</td>
+              <td>{{member["certificateDetails"].share_end_number}}</td>
+              <!-- <td>{{member["registrationInformation"]["registeredAddress"].city}}</td>
+              <td>{{member["registrationInformation"]["registeredAddress"].district}}</td> -->
               <td>{{member.createdAt | date: 'dd, MMMM yyyy'}}</td>
-              <td>
+              <td class="btn-group">
                 <button class="btn btn-primary btn-sm" (click)="onEditMember(member)"><svg
                   xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                   class="bi bi-gear-fill" viewBox="0 0 16 16">
@@ -280,7 +400,26 @@
                   <path
                     d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
                 </svg></button>
+
+                <button class="btn btn-secondary btn-sm" (click)="onGenerateCertificate(member._id)"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z" />
+                  <path
+                    d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5" />
+                </svg></button>
+
+                <button class="btn btn-success btn-sm" [routerLink]="['/receiptnominal', member._id]"><svg
+                  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
+                </svg></button>
               </td>
+
+
            
             
             </tr>

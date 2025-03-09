@@ -7,6 +7,8 @@ import { ViewordinaryformComponent } from './appComponents/viewordinaryform/view
 import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordinaryreceipt.component';
 import { AuthGuard } from './appGuards/auth.guard';
 import { NominalmembershipformComponent } from './appComponents/nominalmembershipform/nominalmembershipform.component';
+import { NominalcertificateComponent } from './appComponents/nominalcertificate/nominalcertificate.component';
+import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalreceipt.component';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule), pathMatch: 'full' }, // Default route
@@ -15,6 +17,10 @@ const routes: Routes = [
   { path: 'certificate/:id', component: CertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
   { path: 'viewordinary/:id', component: ViewordinaryformComponent,canActivate: [AuthGuard] }, // Dynamic route
   { path: 'receiptordinary/:id', component: OrdinaryreceiptComponent, canActivate: [AuthGuard] }, // Dynamic route
+
+  { path: 'nominalcertificate/:id', component: NominalcertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
+  { path: 'receiptnominal/:id', component: NominalreceiptComponent, canActivate: [AuthGuard] }, // Dynamic route
+
 
   { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
 

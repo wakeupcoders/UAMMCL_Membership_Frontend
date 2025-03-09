@@ -58,4 +58,10 @@ export class GenericService {
     );
   }
 
+
+  FindNominalMembershipForm(id: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(this.apiUrl + '/api/NM/' + id, { headers });
+  }
+
 }

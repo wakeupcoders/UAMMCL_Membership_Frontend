@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { NominalService } from 'src/app/appServices/nominal.service';
 import { GenericService } from 'src/app/appServices/generic.service';
 import { config } from 'src/app/config';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,8 +28,9 @@ export class NominalmembershipformComponent implements OnInit {
 
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private nominalService: NominalService) {
+  constructor(private fb: FormBuilder, private nominalService: NominalService,  private router: Router) {
     this.registrationForm = this.fb.group({
+      shares: ['', [Validators.required, Validators.min(1)]],
       registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
         nameOfApplicant: [''],
         dateOfIncorporation: [''],
@@ -67,7 +69,17 @@ export class NominalmembershipformComponent implements OnInit {
           tehsil: [''],
           pinCode: ['']
         })
-      })
+      }),
+      certificateDetails: this.fb.group({
+        register_number: [''],
+        certificate_number: [''],
+        Holding_Iden_number: [''],
+        share_start_number: [''],
+        share_end_number: [''],
+        // value_of_share: ['100', [Validators.required, Validators.min(1)]],
+      }),
+      receiptNumber: [''],
+      paymentMode: [''],
     });
   }
 
@@ -95,6 +107,7 @@ export class NominalmembershipformComponent implements OnInit {
     this.selectedMember = member;
     this.editMode = true;
     this.registrationForm.patchValue({
+      shares: member.shares,
       registrationInformation: {
         nameOfApplicant: member.registrationInformation.nameOfApplicant,
         dateOfIncorporation: member.registrationInformation.dateOfIncorporation,
@@ -134,7 +147,19 @@ export class NominalmembershipformComponent implements OnInit {
           tehsil: member.gstInformation?.gstAddress?.tehsil,
           pinCode: member.gstInformation?.gstAddress?.pinCode
         }
-      }
+      },
+      // Adding certificateDetails
+      certificateDetails: {
+        register_number: member.certificateDetails?.register_number,
+        certificate_number: member.certificateDetails?.certificate_number,
+        Holding_Iden_number: member.certificateDetails?.Holding_Iden_number,
+        share_start_number: member.certificateDetails?.share_start_number,
+        share_end_number: member.certificateDetails?.share_end_number,
+      },
+
+      // Adding receiptNumber & paymentMode
+      receiptNumber: member.receiptNumber,
+      paymentMode: member.paymentMode
 
 
     });
@@ -270,5 +295,9 @@ export class NominalmembershipformComponent implements OnInit {
 
 
 
+  }
+
+  onGenerateCertificate(id: string) {
+    this.router.navigate(['/nominalcertificate', id]);
   }
 }

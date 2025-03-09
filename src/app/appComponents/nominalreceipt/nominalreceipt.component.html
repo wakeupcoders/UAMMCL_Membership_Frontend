@@ -24,17 +24,20 @@
         <label>Membership Form No:</label> <span class="line">{{ receiptDetails.membership_id }}</span>
     </div>
     <div class="section">
-        <label>Name of Applicant:</label> <span class="line">{{ receiptDetails.nameOfApplicant }}</span>
+        <label>Name of Applicant:</label> <span class="line">{{ receiptDetails["registrationInformation"].nameOfApplicant }}</span>
     </div>
-    <div class="section">
+    <!-- <div class="section">
         <label>S/W/D of:</label> <span class="line">{{ receiptDetails.motherName }}</span>
+    </div> -->
+    <div class="section">
+        <label>Address:</label> <span class="line">{{ receiptDetails["registrationInformation"]["registeredAddress"].city }}, {{ receiptDetails["registrationInformation"]["registeredAddress"].district}}
+            , {{ receiptDetails["registrationInformation"]["registeredAddress"].tehsil}}
+            , {{ receiptDetails["registrationInformation"]["registeredAddress"].pinCode}}
+            , {{ receiptDetails["registrationInformation"]["registeredAddress"].zone}}
+        </span>
     </div>
     <div class="section">
-        <label>Address:</label> <span class="line">{{ receiptDetails.presentAddress }}, {{ receiptDetails.presentPinCode
-            }}</span>
-    </div>
-    <div class="section">
-        <label>State/UT:</label> <span class="line">{{ receiptDetails.state }}</span>
+        <label>State/UT:</label> <span class="line">{{ receiptDetails["registrationInformation"]["registeredAddress"].state }}</span>
     </div>
     <div class="section">
         <label>Payment Mode:</label> <span class="line">{{ receiptDetails.paymentMode }}</span>
@@ -66,9 +69,8 @@
 
 <div class="container receipt" *ngIf="!isLoading">
     <button class="btn btn-dark" (click)="printReceipt('printReceipt')" *ngIf="!isLoading">Print Receipt</button>
-    &nbsp;<button class="btn btn-secondary" [routerLink]="['/certificate', ordinaryFormId]"
+    &nbsp;<button class="btn btn-secondary" [routerLink]="['/nominalcertificate', nominalFormId]"
         *ngIf="!isLoading">Certificate</button>
-    &nbsp;
-    <!-- <button class="btn btn-success" [routerLink]="['/viewordinary', ordinaryFormId]" *ngIf="!isLoading">View
+    <!-- &nbsp;<button class="btn btn-success" [routerLink]="['/viewordinary', nominalFormId]" *ngIf="!isLoading">View
         Details</button> -->
 </div>
