@@ -32,8 +32,8 @@
           <p class="topic-description text-muted">
             Holding Identification Number <span
               class="text_underline">{{certficateDetails["certificateDetails"].Holding_Iden_number}}</span> from the
-            State/Union Territory <span class="text_underline">{{certficateDetails.state}}</span> and residing at <span
-              class="text_underline">{{certficateDetails.residentOf}}</span>
+            State/Union Territory <span class="text_underline">{{certficateDetails["registrationInformation"]["registeredAddress"].state}}</span> and residing at <span
+              class="text_underline">{{certficateDetails["registrationInformation"]["registeredAddress"].city}}</span>
             is the registered holder of <span class="text_underline">{{certficateDetails.shares}}</span> fully paid-up
             shares,
             valued at Rs. <span class="text_underline">{{certficateDetails["certificateDetails"].value_of_share}}</span>
