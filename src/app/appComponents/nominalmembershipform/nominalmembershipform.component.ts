@@ -37,7 +37,7 @@ export class NominalmembershipformComponent implements OnInit {
   constructor(private fb: FormBuilder, private nominalService: NominalService,  private router: Router) {
     this.registrationForm = this.fb.group({
       registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
-        nameOfApplicant: [''],
+        nameOfApplicant: [''.toUpperCase()],
         dateOfIncorporation: [''],
         registeredAddress: this.fb.group({
           state: [''],

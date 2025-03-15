@@ -2,11 +2,11 @@
 
 <div class="receipt" id="printReceipt" *ngIf="!isLoading">
     <div class="header">
-        <img src="./assets/img/Unati-logo.png" alt="" srcset="" height="150" width="150">
-        <h1>THE UNATI AGRI ALLIED & MARKETING MULTISTATE CO-OPERATIVE SOCIETY LTD.</h1>
+        <img src="./assets/img/Unati-logo.png" alt="" srcset="" height="120" width="120">
+        <h1 style="font-size: 15px;">THE UNATI AGRI ALLIED & MARKETING MULTISTATE CO-OPERATIVE SOCIETY LTD.</h1>
         <p>Registered Under the Multistate Cooperative Societies Act 2002</p>
         <p>Regd. No. MSCS/CR/1424/2023</p>
-        <p>Head Office: 5 Km Talwara Milestone, Near Mukerian Hydel Power House No.-1, G.T. Road</p>
+        <p style="font-size: 15px;">Head Office: 5 Km Talwara Milestone, Near Mukerian Hydel Power House No.-1, G.T. Road</p>
         <p>Talwara, Dist. Hoshiarpur, Punjab, INDIA</p>
         <p>Email: admin&#064;uammcl.org | Website: www.unati.org</p>
     </div>
@@ -21,7 +21,7 @@
         <label>Type of Membership:</label> <span class="line">Nominal</span>
     </div>
     <div class="section">
-        <label>Membership Form No:</label> <span class="line">{{ receiptDetails.membership_id }}</span>
+        <label>Membership Form No:</label> <span class="line">{{ receiptDetails["memberInformation"].membership_id }}</span>
     </div>
     <div class="section">
         <label>Name of Applicant:</label> <span class="line">{{ receiptDetails["registrationInformation"].nameOfApplicant }}</span>
@@ -47,20 +47,20 @@
     </div>
  
     <div class="section">
-        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails.shares * 100 }} Rs. For {{receiptDetails.shares}} Shares.</span> 
+        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails["memberInformation"].shares * 100 + 1000}} Rs. For {{receiptDetails["memberInformation"].shares}} Shares.</span> 
     </div>
     <div class="section">
-        <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails.shares * 100 | numberToWords }} rupees only</span>
+        <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails["memberInformation"].shares * 100+1000 | numberToWords }} rupees only</span>
     </div>
     <hr>
     <div class="footer">
-        <p>This receipt confirms the payment made towards your Membership Subscription for the stated financial year. We
+        <span class="text-danger">Please Note: 1000 INR charged for Nominal Membership.</span>
+        <p style="font-size: 10px;">This receipt confirms the payment made towards your Membership Subscription for the stated financial year. We
             are currently processing your application and will confirm your membership status shortly.</p>
-        <p>Thank you for choosing to be a part of our society. If you have any queries or require further assistance,
-            please contact us using the details provided above.</p>
-        <br>
 
-        <img src="https://wakeupcoders.com/assets/img/signn.png" alt="" srcset="" height="60" width="160">
+       
+
+        <img src="https://wakeupcoders.com/assets/img/signn.png" alt="" srcset="" height="40" width="140">
         <p>__________________________</p>
         <p>Treasurer/Authorized person</p>
     </div>
