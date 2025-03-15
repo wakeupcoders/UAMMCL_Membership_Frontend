@@ -21,6 +21,8 @@ export class NominalmembershipformComponent implements OnInit {
   nominalMembers;
   selectedMemberID;
   selectedMember;
+  showOtherTradingType = false;
+  showOtherMembershipType = false;
   editMode = false;
   p: number = 1;
 
@@ -33,7 +35,6 @@ export class NominalmembershipformComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private nominalService: NominalService,  private router: Router) {
     this.registrationForm = this.fb.group({
-      shares: ['', [Validators.required, Validators.min(1)]],
       registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
         nameOfApplicant: [''],
         dateOfIncorporation: [''],
@@ -44,7 +45,17 @@ export class NominalmembershipformComponent implements OnInit {
           tehsil: [''],
           pinCode: [''],
           zone: ['']
-        })
+        }),
+        aboutEntity:['']
+      }),
+      memberInformation: this.fb.group({
+        membership_id: [''],
+        shares: [],
+        membership_type: [],
+        other_membership_type: [],
+        trading_type: [],
+        other_trading_type: [],
+        legal_entity_type: []
       }),
       idInformation: this.fb.group({
         pan: [''],
@@ -58,7 +69,7 @@ export class NominalmembershipformComponent implements OnInit {
         emailId: [''],
         panNo: [''],
         registeredWithOtherExchange: [false],
-        nomineeName: [''],
+        name_of_entity:[''],
         licenseNo: ['']
       }),
       gstInformation: this.fb.group({
@@ -81,6 +92,18 @@ export class NominalmembershipformComponent implements OnInit {
         share_end_number: [''],
         // value_of_share: ['100', [Validators.required, Validators.min(1)]],
       }),
+      registeredFAEODetails: this.fb.group({
+        member_number: [''],
+        name_of_entity: ['']
+      }),
+      bankDetails: this.fb.group({
+        bank_acc_type: [''],
+        holder_type: [''],
+        bank_name: [''],
+        holder_name: [''],
+        account_number: [''],
+        ifsc_code: ['']
+      }),
       receiptNumber: [''],
       paymentMode: [''],
     });
@@ -89,6 +112,14 @@ export class NominalmembershipformComponent implements OnInit {
   ngOnInit(): void {
     this.isTableView = true;
     this.onDisplay();
+  }
+
+  onMembershipTypeChange(event: any) {
+    this.showOtherMembershipType = event.target.value === 'Others';
+  }
+
+  onTradingTypeChange(event: any) {
+    this.showOtherTradingType = event.target.value === 'Others';
   }
 
   showForm(status: boolean) {
@@ -110,7 +141,6 @@ export class NominalmembershipformComponent implements OnInit {
     this.selectedMember = member;
     this.editMode = true;
     this.registrationForm.patchValue({
-      shares: member.shares,
       registrationInformation: {
         nameOfApplicant: member.registrationInformation.nameOfApplicant,
         dateOfIncorporation: member.registrationInformation.dateOfIncorporation,
@@ -122,7 +152,18 @@ export class NominalmembershipformComponent implements OnInit {
           pinCode: member["registrationInformation"].registeredAddress?.pinCode,
           zone: member["registrationInformation"].registeredAddress?.zone
         },
+        aboutEntity:member.registrationInformation.aboutEntity
       },
+      memberInformation: {
+        membership_id: member.memberInformation?.membership_id,
+        shares: member.memberInformation?.shares,
+        membership_type: member.memberInformation?.membership_type,
+        other_membership_type: member.memberInformation?.other_membership_type || '',
+        trading_type: member.memberInformation?.trading_type,
+        other_trading_type: member.memberInformation?.other_trading_type || '',
+        legal_entity_type: member.memberInformation?.legal_entity_type
+      },
+      
       idInformation: {
         pan: member["idInformation"]?.pan,
         itan: member["idInformation"]?.itan,
@@ -136,7 +177,7 @@ export class NominalmembershipformComponent implements OnInit {
         emailId: member.contactInformation?.emailId,
         panNo: member.contactInformation?.panNo,
         registeredWithOtherExchange: member.contactInformation?.registeredWithOtherExchange,
-        nomineeName: member.contactInformation?.nomineeName,
+        name_of_entity:member.contactInformation?.name_of_entity,
         licenseNo: member.contactInformation?.licenseNo
       },
       gstInformation: {
@@ -158,6 +199,19 @@ export class NominalmembershipformComponent implements OnInit {
         Holding_Iden_number: member.certificateDetails?.Holding_Iden_number,
         share_start_number: member.certificateDetails?.share_start_number,
         share_end_number: member.certificateDetails?.share_end_number,
+      },
+
+      registeredFAEODetails: {
+        member_number: member.registeredFAEODetails?.member_number,
+        name_of_entity: member.registeredFAEODetails?.name_of_entity
+      },
+      bankDetails: {
+        bank_acc_type: member.bankDetails?.bank_acc_type,
+        holder_type: member.bankDetails?.holder_type,
+        bank_name: member.bankDetails?.bank_name,
+        holder_name: member.bankDetails?.holder_name,
+        account_number: member.bankDetails?.account_number,
+        ifsc_code: member.bankDetails?.ifsc_code
       },
 
       // Adding receiptNumber & paymentMode
