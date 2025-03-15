@@ -23,6 +23,7 @@ export class NominalmembershipformComponent implements OnInit {
   selectedMember;
   showOtherTradingType = false;
   showOtherMembershipType = false;
+  showHolderType = false;
   editMode = false;
   p: number = 1;
 
@@ -114,12 +115,23 @@ export class NominalmembershipformComponent implements OnInit {
     this.onDisplay();
   }
 
+  convertToUppercase(controlName: string) {
+    let control = this.registrationForm.get(controlName);
+    if (control) {
+      control.setValue(control.value.toUpperCase(), { emitEvent: false });
+    }
+  }
+
   onMembershipTypeChange(event: any) {
     this.showOtherMembershipType = event.target.value === 'Others';
   }
 
   onTradingTypeChange(event: any) {
     this.showOtherTradingType = event.target.value === 'Others';
+  }
+
+  onBankAccountTypeChange(event: any) {
+    this.showHolderType = event.target.value === 'Joint A/c';
   }
 
   showForm(status: boolean) {

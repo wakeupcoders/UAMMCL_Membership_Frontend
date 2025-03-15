@@ -43,7 +43,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <label class="form-label">Name of Applicant:</label>
-                  <input type="text" formControlName="nameOfApplicant" class="form-control">
+                  <input type="text" formControlName="nameOfApplicant" class="form-control" style="text-transform: uppercase;" (input)="convertToUppercase('nameOfApplicant')">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Date of Incorporation or Date of Birth:</label>
@@ -93,7 +93,8 @@
               <div class="row">
                 <div class="col-md-4">
                   <label class="form-label">Membership ID:</label>
-                  <input type="text" formControlName="membership_id" class="form-control" readonly placeholder="AUTO Generated">
+                  <input type="text" formControlName="membership_id" class="form-control" readonly
+                    placeholder="AUTO Generated">
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Shares:</label>
@@ -101,7 +102,8 @@
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Membership Type:</label>
-                  <select formControlName="membership_type" class="form-control" (change)="onMembershipTypeChange($event)">
+                  <select formControlName="membership_type" class="form-control"
+                    (change)="onMembershipTypeChange($event)">
                     <option value="" disabled selected>Select Membership Type</option>
                     <option value="Miller">Miller</option>
                     <option value="Processor">Processor</option>
@@ -115,13 +117,13 @@
                     <option value="Others">Others</option>
                   </select>
                 </div>
-                
+
                 <!-- Input field for 'Others' (conditionally displayed) -->
                 <div class="col-md-4" *ngIf="showOtherMembershipType">
                   <label class="form-label">Specify Other Membership Type:</label>
                   <input type="text" formControlName="other_membership_type" class="form-control">
                 </div>
-                
+
                 <div class="col-md-4">
                   <label class="form-label">Trading Type:</label>
                   <select formControlName="trading_type" class="form-control" (change)="onTradingTypeChange($event)">
@@ -133,14 +135,14 @@
                     <option value="Others">Others</option>
                   </select>
                 </div>
-                
+
                 <!-- Input field for 'Others' (conditionally displayed) -->
                 <div class="col-md-4" *ngIf="showOtherTradingType">
                   <label class="form-label">Specify Other Trading Type:</label>
                   <input type="text" formControlName="other_trading_type" class="form-control">
                 </div>
-                
-               
+
+
                 <div class="col-md-4">
                   <label class="form-label">Legal Entity Type:</label>
                   <select formControlName="legal_entity_type" class="form-control">
@@ -157,7 +159,7 @@
                     <option value="Cooperative Federation">Cooperative Federation</option>
                   </select>
                 </div>
-                
+
               </div>
             </fieldset>
 
@@ -202,7 +204,7 @@
                   <label class="form-label">Email ID:</label>
                   <input type="email" formControlName="emailId" class="form-control">
                 </div>
-              
+
                 <div class="col-md-4 form-check mt-4">
                   <input type="checkbox" formControlName="registeredWithOtherExchange" class="form-check-input">
                   <label class="form-check-label">Registered with Other</label>
@@ -266,11 +268,14 @@
             <!-- Certificate Details Card -->
             <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
               <h5>Certificate Details</h5>
-              <marquee><p class="text-danger">Note:Certificates Details are Read Only and Its Auto Generated.</p></marquee>
+              <marquee>
+                <p class="text-danger">Note: Certificates Details are Read Only and Its Auto Generated.</p>
+              </marquee>
               <div formGroupName="certificateDetails">
                 <div class="mb-3">
                   <label>Register Number</label>
-                  <input formControlName="register_number" class="form-control" type="text" readonly />
+                  <input formControlName="register_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
                   <div class="text-danger"
                     *ngIf="registrationForm.get('certificateDetails.register_number')?.touched && registrationForm.get('certificateDetails.register_number')?.errors?.['required']">
                     Register Number is required.
@@ -279,7 +284,8 @@
 
                 <div class="mb-3">
                   <label>Certificate Number</label>
-                  <input formControlName="certificate_number" class="form-control" type="text" readonly />
+                  <input formControlName="certificate_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
                   <div class="text-danger"
                     *ngIf="registrationForm.get('certificateDetails.certificate_number')?.touched && registrationForm.get('certificateDetails.certificate_number')?.errors?.['required']">
                     Certificate Number is required.
@@ -288,7 +294,8 @@
 
                 <div class="mb-3">
                   <label>Holding Identification Number</label>
-                  <input formControlName="Holding_Iden_number" class="form-control" type="text" readonly />
+                  <input formControlName="Holding_Iden_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
                   <div class="text-danger"
                     *ngIf="registrationForm.get('certificateDetails.Holding_Iden_number')?.touched && registrationForm.get('certificateDetails.Holding_Iden_number')?.errors?.['required']">
                     Holding Identification Number is required.
@@ -297,7 +304,8 @@
 
                 <div class="mb-3">
                   <label>Share Start Number</label>
-                  <input formControlName="share_start_number" class="form-control" type="number" readonly />
+                  <input formControlName="share_start_number" class="form-control" type="number" readonly
+                    placeholder="AUTO Generated" />
                   <div class="text-danger"
                     *ngIf="registrationForm.get('certificateDetails.share_start_number')?.touched && registrationForm.get('certificateDetails.share_start_number')?.errors?.['required']">
                     Share Start Number is required.
@@ -305,8 +313,9 @@
                 </div>
 
                 <div class="mb-3">
-                  <label>Share End Number</label> 
-                  <input formControlName="share_end_number" class="form-control" type="number" readonly />
+                  <label>Share End Number</label>
+                  <input formControlName="share_end_number" class="form-control" type="number" readonly
+                    placeholder="AUTO Generated" />
                   <div class="text-danger"
                     *ngIf="registrationForm.get('certificateDetails.share_end_number')?.touched && registrationForm.get('certificateDetails.share_end_number')?.errors?.['required']">
                     Share End Number is required.
@@ -348,11 +357,22 @@
               <div class="row">
                 <div class="col-md-4">
                   <label class="form-label">Bank Account Type:</label>
-                  <input type="text" formControlName="bank_acc_type" class="form-control">
+                  <select formControlName="bank_acc_type" class="form-control" (change)="onBankAccountTypeChange($event)">
+                    <option value="" disabled selected>Select Account Type</option>
+                    <option value="Saving A/c">Saving A/c</option>
+                    <option value="Joint A/c">Joint A/c</option>
+                    <option value="Current A/c">Current A/c</option>
+                  </select>
                 </div>
-                <div class="col-md-4">
+
+                <!-- Holder Type Dropdown (Visible only when "Joint A/c" is selected) -->
+                <div class="col-md-4" *ngIf="showHolderType">
                   <label class="form-label">Holder Type:</label>
-                  <input type="text" formControlName="holder_type" class="form-control">
+                  <select formControlName="holder_type" class="form-control">
+                    <option value="" disabled selected>Select Holder Type</option>
+                    <option value="First Holder">First Holder</option>
+                    <option value="Second Holder">Second Holder</option>
+                  </select>
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Bank Name:</label>
