@@ -24,7 +24,7 @@
         <label>Membership Form No:</label> <span class="line">{{ receiptDetails["memberInformation"].membership_id }}</span>
     </div>
     <div class="section">
-        <label>Name of Applicant:</label> <span class="line">{{ receiptDetails["registrationInformation"].nameOfApplicant }}</span>
+        <label>Name of Applicant:</label> <span class="line">{{ receiptDetails["registrationInformation"].nameOfApplicant | uppercase }}</span>
     </div>
     <!-- <div class="section">
         <label>S/W/D of:</label> <span class="line">{{ receiptDetails.motherName }}</span>

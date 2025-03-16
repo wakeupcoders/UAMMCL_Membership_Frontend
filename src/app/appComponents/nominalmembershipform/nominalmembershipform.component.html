@@ -512,7 +512,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let member of nominalMembers | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td>{{member["registrationInformation"].nameOfApplicant}}</td>
+              <td>{{member["registrationInformation"].nameOfApplicant | uppercase}}</td>
               <td>{{member["registrationInformation"].dateOfIncorporation | date: 'dd, MMMM yyyy'}}</td>
               <td>{{member["registrationInformation"]["registeredAddress"].state}}</td>
               <td>{{member["memberInformation"].shares}}</td>
