@@ -19,6 +19,7 @@ import { NumberToWordsPipe } from './appPipes/number-to-words.pipe';
 import { NominalmembershipformComponent } from './appComponents/nominalmembershipform/nominalmembershipform.component';
 import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalreceipt.component';
 import { NominalcertificateComponent } from './appComponents/nominalcertificate/nominalcertificate.component';
+import { ViewnominalformComponent } from './appComponents/viewnominalform/viewnominalform.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NominalcertificateComponent } from './appComponents/nominalcertificate/
     NumberToWordsPipe,
     NominalmembershipformComponent,
     NominalreceiptComponent,
-    NominalcertificateComponent
+    NominalcertificateComponent,
+    ViewnominalformComponent
   ],
   imports: [
     BrowserModule,

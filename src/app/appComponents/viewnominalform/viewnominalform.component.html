@@ -1,0 +1,125 @@
+<!-- Loader Component -->
+<app-loader *ngIf="isLoading"></app-loader>
+
+<!-- Form Content -->
+<div class="container mt-4" *ngIf="!isLoading">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white">
+            <h4>Application Details</h4>
+        </div>
+        <div class="card-body" id="printableForm">
+            
+            <!-- Membership Information -->
+            <h3>Membership Information</h3>
+            <hr>
+            <div class="section">
+                <label>Membership ID:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.membership_id }}</span>
+            </div>
+            <div class="section">
+                <label>Shares:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.shares }}</span>
+            </div>
+            <div class="section">
+                <label>Membership Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.membership_type }}</span>
+            </div>
+            <div class="section">
+                <label>Other Membership Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.other_membership_type }}</span>
+            </div>
+
+            <br>
+            <!-- Registration Information -->
+            <h3>Registration Information</h3>
+            <hr>
+            <div class="section">
+                <label>Name of Applicant:</label> 
+                <span class="line">{{ nominalFormDetail?.registrationInformation?.nameOfApplicant }}</span>
+            </div>
+            <div class="section">
+                <label>Date of Incorporation:</label> 
+                <span class="line">{{ nominalFormDetail?.registrationInformation?.dateOfIncorporation }}</span>
+            </div>
+            <div class="section">
+                <label>Date of Birth or Firm Incorporation Date:</label> 
+                <span class="line">{{ nominalFormDetail?.registrationInformation?.dateOfBirth }}</span>
+            </div>
+            
+            <br>
+            <!-- ID Information -->
+            <h3>ID Information</h3>
+            <hr>
+            <div class="section">
+                <label>PAN:</label> 
+                <span class="line">{{ nominalFormDetail?.idInformation?.pan }}</span>
+            </div>
+            <div class="section">
+                <label>Aadhar:</label> 
+                <span class="line">{{ nominalFormDetail?.idInformation?.aadhar }}</span>
+            </div>
+
+            <br>
+            <!-- Contact Information -->
+            <h3>Contact Information</h3>
+            <hr>
+            <div class="section">
+                <label>Mobile Number:</label> 
+                <span class="line">{{ nominalFormDetail?.contactInformation?.mobileNo }}</span>
+            </div>
+            <div class="section">
+                <label>Email ID:</label> 
+                <span class="line">{{ nominalFormDetail?.contactInformation?.emailId }}</span>
+            </div>
+
+            <br>
+            <!-- Nomination Information -->
+            <h3>Nomination Information</h3>
+            <hr>
+            <div class="section">
+                <label>Nominee Name:</label> 
+                <span class="line">{{ nominalFormDetail?.nomination?.name }}</span>
+            </div>
+            <div class="section">
+                <label>Relation:</label> 
+                <span class="line">{{ nominalFormDetail?.nomination?.relation }}</span>
+            </div>
+
+            <br>
+            <!-- Bank Information -->
+            <h3>Bank Information</h3>
+            <hr>
+            <div class="section">
+                <label>Bank Name:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.bank_name }}</span>
+            </div>
+            <div class="section">
+                <label>Account Number:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.account_number }}</span>
+            </div>
+
+            <br>
+            <!-- Receipt Information -->
+            <h3>Receipt Information</h3>
+            <hr>
+            <div class="section">
+                <label>Receipt No:</label> 
+                <span class="line">{{ nominalFormDetail?.receiptNumber }}</span>
+            </div>
+            <div class="section">
+                <label>Payment Mode:</label> 
+                <span class="line">{{ nominalFormDetail?.paymentMode }}</span>
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+            <button class="btn btn-dark" [routerLink]="['/receiptnominal', nominalFormId]">Receipt</button>
+            &nbsp;
+            <button class="btn btn-secondary" [routerLink]="['/nominalcertificate', nominalFormId]">Certificate</button>
+            &nbsp;
+            <button class="btn btn-dark" (click)="printDiv()">Print Form</button>
+        </div>
+    </div>
+</div>

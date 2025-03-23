@@ -5,78 +5,199 @@
       <div class="card-header bg-dark text-white">
         <h4>Applicantion Details</h4>
       </div>
-      <div class="card-body">
-        <div class="row">
-          <!-- Personal Details -->
-          <div class="col-md-6">
-            <h5>Personal Information</h5>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Name:</strong> {{ ordinaryFormDetail.nameOfApplicant }}</li>
-              <li class="list-group-item"><strong>Membership ID:</strong> {{ ordinaryFormDetail.membership_id }}</li>
-              <li class="list-group-item"><strong>State:</strong> {{ ordinaryFormDetail.state }}</li>
-              <li class="list-group-item"><strong>Resident Of:</strong> {{ ordinaryFormDetail.residentOf }}</li>
-              <li class="list-group-item"><strong>Age:</strong> {{ ordinaryFormDetail.age }}</li>
-              <li class="list-group-item"><strong>Date of Birth:</strong> {{ ordinaryFormDetail.dateOfBirth | date }}</li>
-              <li class="list-group-item"><strong>Marital Status:</strong> {{ ordinaryFormDetail.maritalStatus }}</li>
-              <li class="list-group-item"><strong>Educational Qualification:</strong> {{ ordinaryFormDetail.educationalQualification }}</li>
-            </ul>
-          </div>
-  
-          <!-- Contact Details -->
-          <div class="col-md-6">
-            <h5>Contact Information</h5>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Permanent Address:</strong> {{ ordinaryFormDetail.permanentAddress }}</li>
-              <li class="list-group-item"><strong>Permanent Pin Code:</strong> {{ ordinaryFormDetail.permanentPinCode }}</li>
-              <li class="list-group-item"><strong>Present Address:</strong> {{ ordinaryFormDetail.presentAddress }}</li>
-              <li class="list-group-item"><strong>Present Pin Code:</strong> {{ ordinaryFormDetail.presentPinCode }}</li>
-              <li class="list-group-item"><strong>Telephone Number:</strong> {{ ordinaryFormDetail.telephoneNumber }}</li>
-              <li class="list-group-item"><strong>Email:</strong> {{ ordinaryFormDetail.email }}</li>
-              <li class="list-group-item"><strong>Aadhar Card:</strong> {{ ordinaryFormDetail.aadharCard }}</li>
-              <li class="list-group-item"><strong>PAN Card:</strong> {{ ordinaryFormDetail.panCard }}</li>
-            </ul>
-          </div>
-        </div>
-  
-        <div class="row mt-4">
-          <!-- Nomination Details -->
-          <div class="col-md-6">
-            <h5>Nomination Details</h5>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Name:</strong> {{ ordinaryFormDetail.nomination.name }}</li>
-              <li class="list-group-item"><strong>Relation:</strong> {{ ordinaryFormDetail.nomination.relation }}</li>
-              <li class="list-group-item"><strong>Occupation:</strong> {{ ordinaryFormDetail.nomination.occupation }}</li>
-              <li class="list-group-item"><strong>Address:</strong> {{ ordinaryFormDetail.nomination.address }}</li>
-              <li class="list-group-item"><strong>Age:</strong> {{ ordinaryFormDetail.nomination.age }}</li>
-            </ul>
-          </div>
-  
-          <!-- Certificate Details -->
-          <div class="col-md-6">
-            <h5>Certificate Details</h5>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Register Number:</strong> {{ ordinaryFormDetail.certificateDetails.register_number }}</li>
-              <li class="list-group-item"><strong>Certificate Number:</strong> {{ ordinaryFormDetail.certificateDetails.certificate_number }}</li>
-              <li class="list-group-item"><strong>Holding ID:</strong> {{ ordinaryFormDetail.certificateDetails.Holding_Iden_number }}</li>
-              <li class="list-group-item"><strong>Share Start Number:</strong> {{ ordinaryFormDetail.certificateDetails.share_start_number }}</li>
-              <li class="list-group-item"><strong>Share End Number:</strong> {{ ordinaryFormDetail.certificateDetails.share_end_number }}</li>
-              <!-- <li class="list-group-item"><strong>Value of Share:</strong> {{ ordinaryFormDetail.certificateDetails.value_of_share }}</li> -->
-            </ul>
-          </div>
-        </div>
-  
-        <div class="row mt-4">
-          <!-- Receipt Details -->
-          <div class="col-md-12">
-            <h5>Receipt Information</h5>
-            <ul class="list-group">
-              <li class="list-group-item"><strong>Receipt Number:</strong> <span>  UAMMCL/MEM/{{ ordinaryFormDetail.receiptNumber }}</span></li>
-              <li class="list-group-item"><strong>Created At:</strong> {{ ordinaryFormDetail.createdAt | date:'medium' }}</li>
-              <li class="list-group-item"><strong>Updated At:</strong> {{ ordinaryFormDetail.updatedAt | date:'medium' }}</li>
-            </ul>
-          </div>
-        </div>
+
+      <div class="card-body" id="printableForm">
+            
+        <!-- Membership Information -->
+        <h3>Membership Information</h3>
+        <hr>
+        <div class="section">
+          <label>Name:</label> 
+          <span class="line">{{ ordinaryFormDetail?.nameOfApplicant }}</span>
       </div>
+      
+      <div class="section">
+          <label>Membership ID:</label> 
+          <span class="line">{{ ordinaryFormDetail?.membership_id }}</span>
+      </div>
+      
+      <div class="section">
+          <label>State:</label> 
+          <span class="line">{{ ordinaryFormDetail?.state }}</span>
+      </div>
+      
+      <div class="section">
+          <label>Resident Of:</label> 
+          <span class="line">{{ ordinaryFormDetail?.residentOf }}</span>
+      </div>
+      
+      <div class="section">
+          <label>Age:</label> 
+          <span class="line">{{ ordinaryFormDetail?.age }}</span>
+      </div>
+      
+      <div class="section">
+          <label>Date of Birth:</label> 
+          <span class="line">{{ ordinaryFormDetail?.dateOfBirth | date }}</span>
+      </div>
+      
+      <div class="section">
+          <label>Marital Status:</label> 
+          <span class="line">{{ ordinaryFormDetail?.maritalStatus }}</span>
+      </div>
+      
+      <div class="section">
+          <label>Educational Qualification:</label> 
+          <span class="line">{{ ordinaryFormDetail?.educationalQualification }}</span>
+      </div>
+
+      <div class="section">
+        <label>Full Name:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nameOfApplicant }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Mother's Name:</label> 
+        <span class="line">{{ ordinaryFormDetail?.mothersName }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Wife's Name:</label> 
+        <span class="line">{{ ordinaryFormDetail?.wifesName }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Age:</label> 
+        <span class="line">{{ ordinaryFormDetail?.age }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Date of Birth:</label> 
+        <span class="line">{{ ordinaryFormDetail?.dateOfBirth | date }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Educational Qualification:</label> 
+        <span class="line">{{ ordinaryFormDetail?.educationalQualification }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Marital Status:</label> 
+        <span class="line">{{ ordinaryFormDetail?.maritalStatus }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Permanent Address:</label> 
+        <span class="line">{{ ordinaryFormDetail?.permanentAddress }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Permanent Pin Code:</label> 
+        <span class="line">{{ ordinaryFormDetail?.permanentPinCode }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Present Address:</label> 
+        <span class="line">{{ ordinaryFormDetail?.presentAddress }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Present Pin Code:</label> 
+        <span class="line">{{ ordinaryFormDetail?.presentPinCode }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Telephone Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.telephoneNumber }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Email:</label> 
+        <span class="line">{{ ordinaryFormDetail?.email }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Aadhar Card:</label> 
+        <span class="line">{{ ordinaryFormDetail?.aadharCard }}</span>
+    </div>
+    
+    <div class="section">
+        <label>PAN Card:</label> 
+        <span class="line">{{ ordinaryFormDetail?.panCard }}</span>
+    </div>
+    
+    <h3>Nomination Details</h3>
+    <hr>
+    
+    <div class="section">
+        <label>Name:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nomination?.name }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Relation:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nomination?.relation }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Occupation:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nomination?.occupation }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Address:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nomination?.address }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Age:</label> 
+        <span class="line">{{ ordinaryFormDetail?.nomination?.age }}</span>
+    </div>
+    
+    <h3>Certificate Details</h3>
+    <hr>
+    
+    <div class="section">
+        <label>Register Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.certificateDetails?.register_number }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Certificate Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.certificateDetails?.certificate_number }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Holding Identification Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.certificateDetails?.Holding_Iden_number }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Share Start Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.certificateDetails?.share_start_number }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Share End Number:</label> 
+        <span class="line">{{ ordinaryFormDetail?.certificateDetails?.share_end_number }}</span>
+    </div>
+    
+    <h3>Payment Details</h3>
+    <hr>
+    
+    <div class="section">
+        <label>Receipt Number:</label> 
+        <span class="line">UAMMCL/MEM/{{ ordinaryFormDetail?.receiptNumber }}</span>
+    </div>
+    
+    <div class="section">
+        <label>Payment Mode:</label> 
+        <span class="line">{{ ordinaryFormDetail?.paymentMode }}</span>
+    </div>
+    
+      
+    </div>
+      
     </div>
   </div>
 <br>
@@ -84,6 +205,8 @@
     <button class="btn btn-dark" *ngIf="!isLoading" [routerLink]="['/receiptordinary', ordinaryFormId]">Receipt</button>
     &nbsp;<button class="btn btn-secondary" 
         *ngIf="!isLoading" [routerLink]="['/certificate', ordinaryFormId]">Certificate</button>
+        &nbsp;
+        <button class="btn btn-dark" (click)="printDiv()">Print Form</button>
    
 </div>
   

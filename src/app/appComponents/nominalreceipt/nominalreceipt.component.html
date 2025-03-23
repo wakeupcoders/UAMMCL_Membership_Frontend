@@ -45,9 +45,21 @@
     <div class="section">
         <label>Payment Date:</label> <span class="line">{{ receiptDetails.createdAt | date: 'dd, MMMM yyyy'  }}</span>
     </div>
+
+    <div class="section">
+        <label>Total Shares (Qty):</label> <span class="line">{{ receiptDetails["memberInformation"].shares}}</span> 
+    </div>
  
     <div class="section">
-        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails["memberInformation"].shares * 100 + 1000}} Rs. For {{receiptDetails["memberInformation"].shares}} Shares.</span> 
+        <label>Share Per Value:</label> <span class="line">{{100 | currency:'INR'}}</span> 
+    </div>
+
+    <div class="section">
+        <label>Membership Fees</label> <span class="line">{{1000 | currency:'INR'}}</span> 
+    </div>
+
+    <div class="section">
+        <label>Total Amount (In figures):</label> <span class="line">{{ receiptDetails["memberInformation"].shares * 100 + 1000 | currency:'INR'}}</span> 
     </div>
     <div class="section">
         <label>Total Amount (In words):</label> <span class="line">{{ receiptDetails["memberInformation"].shares * 100+1000 | numberToWords }} rupees only</span>
@@ -71,6 +83,9 @@
     <button class="btn btn-dark" (click)="printReceipt('printReceipt')" *ngIf="!isLoading">Print Receipt</button>
     &nbsp;<button class="btn btn-secondary" [routerLink]="['/nominalcertificate', nominalFormId]"
         *ngIf="!isLoading">Certificate</button>
+        &nbsp;
+        <button class="btn btn-success" [routerLink]="['/viewnominal', nominalFormId]" *ngIf="!isLoading">View
+            Details</button>
     <!-- &nbsp;<button class="btn btn-success" [routerLink]="['/viewordinary', nominalFormId]" *ngIf="!isLoading">View
         Details</button> -->
 </div>

@@ -36,58 +36,6 @@
           </div>
           <div class="card-body">
 
-            <!-- Registration Information -->
-            <fieldset formGroupName="registrationInformation" class="shadow-lg p-3 mb-5 bg-white rounded">
-              <!-- 👈 Add this wrapper -->
-              <legend class="h5">Registration Information</legend>
-              <div class="row">
-                <div class="col-md-6">
-                  <label class="form-label">Name of Applicant:</label>
-                  <input type="text" formControlName="nameOfApplicant" class="form-control" style="text-transform: uppercase;" (input)="convertToUppercase('nameOfApplicant')">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Date of Incorporation or Date of Birth:</label>
-                  <input type="date" formControlName="dateOfIncorporation" class="form-control">
-                </div>
-              </div>
-              <br>
-              <!-- Registered Address -->
-              <fieldset formGroupName="registeredAddress" class="mb-3">
-                <legend class="h5">Registered Address</legend>
-                <div class="row">
-                  <div class="col-md-4">
-                    <label class="form-label">State:</label>
-                    <input type="text" formControlName="state" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label">City:</label>
-                    <input type="text" formControlName="city" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label">District:</label>
-                    <input type="text" formControlName="district" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label">Tehsil:</label>
-                    <input type="text" formControlName="tehsil" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label">Pin Code:</label>
-                    <input type="text" formControlName="pinCode" class="form-control">
-                  </div>
-                  <div class="col-md-4">
-                    <label class="form-label">Zone:</label>
-                    <input type="text" formControlName="zone" class="form-control">
-                  </div>
-                </div>
-              </fieldset>
-              <div class="col-md-6">
-                <label class="form-label">About Entity:</label>
-                <input type="text" formControlName="aboutEntity" class="form-control">
-              </div>
-            </fieldset> <!-- 👈 Close the wrapper -->
-
-
             <fieldset formGroupName="memberInformation" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
               <legend class="h5">Member Information</legend>
               <div class="row">
@@ -145,7 +93,8 @@
 
                 <div class="col-md-4">
                   <label class="form-label">Legal Entity Type:</label>
-                  <select formControlName="legal_entity_type" class="form-control">
+                  <select formControlName="legal_entity_type" class="form-control"
+                    (change)="onLegalEntityTypeChange($event)">
                     <option value="" disabled selected>Select Entity Type</option>
                     <option value="Individual">Individual</option>
                     <option value="Sole Proprietorship">Sole Proprietorship</option>
@@ -157,11 +106,79 @@
                     <option value="Cooperative Society">Cooperative Society</option>
                     <option value="SHG">SHG</option>
                     <option value="Cooperative Federation">Cooperative Federation</option>
+                    <option value="Others">Others</option>
                   </select>
+                </div>
+
+                <!-- Input field for 'Others' (conditionally displayed) -->
+                <div class="col-md-4" *ngIf="showOtherEntityType">
+                  <label class="form-label">Specify Other Entity Type:</label>
+                  <input type="text" formControlName="other_legal_entity_type" class="form-control">
                 </div>
 
               </div>
             </fieldset>
+
+            <!-- Registration Information -->
+            <fieldset formGroupName="registrationInformation" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <!-- 👈 Add this wrapper -->
+              <legend class="h5">Registration Information</legend>
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Name of Applicant:</label>
+                  <input type="text" formControlName="nameOfApplicant" class="form-control"
+                    style="text-transform: uppercase;" (input)="convertToUppercase('nameOfApplicant')">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Date of Incorporation</label>
+                  <input type="date" formControlName="dateOfIncorporation" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Date of Birth or Firm Incorporation Date</label>
+                  <input type="date" formControlName="dateOfBirth" class="form-control">
+                </div>
+              </div>
+              <br>
+              <!-- Registered Address -->
+              <fieldset formGroupName="registeredAddress" class="mb-3">
+                <legend class="h5">Registered Address</legend>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="form-label">City/Village or Address:</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">District:</label>
+                    <input type="text" formControlName="district" class="form-control">
+                  </div>
+                 
+                  <div class="col-md-4">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Pin Code:</label>
+                    <input type="text" formControlName="pinCode" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Zone:</label>
+                    <input type="text" formControlName="zone" class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+              <div class="col-md-6">
+                <label class="form-label">About Entity:</label>
+                <input type="text" formControlName="aboutEntity" class="form-control">
+              </div>
+            </fieldset> <!-- 👈 Close the wrapper -->
+
+
+
 
 
 
@@ -174,7 +191,7 @@
                   <input type="text" formControlName="pan" class="form-control">
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">ITAN:</label>
+                  <label class="form-label">TAN:</label>
                   <input type="text" formControlName="itan" class="form-control">
                 </div>
                 <div class="col-md-4">
@@ -186,7 +203,7 @@
                   <input type="text" formControlName="aadhar" class="form-control">
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">ID Number:</label>
+                  <label class="form-label">Any Other ID Number:</label>
                   <input type="text" formControlName="idNumber" class="form-control">
                 </div>
               </div>
@@ -242,20 +259,20 @@
                 <legend class="h6">GST Address</legend>
                 <div class="row">
                   <div class="col-md-4">
-                    <label class="form-label">State:</label>
-                    <input type="text" formControlName="state" class="form-control">
+                    <label class="form-label">City/Village:</label>
+                    <input type="text" formControlName="city" class="form-control">
                   </div>
                   <div class="col-md-4">
-                    <label class="form-label">City:</label>
-                    <input type="text" formControlName="city" class="form-control">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">District:</label>
                     <input type="text" formControlName="district" class="form-control">
                   </div>
                   <div class="col-md-4">
-                    <label class="form-label">Tehsil:</label>
-                    <input type="text" formControlName="tehsil" class="form-control">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">Pin Code:</label>
@@ -264,6 +281,95 @@
                 </div>
               </fieldset>
             </fieldset>
+
+
+
+            <!-- Nomination Details Card -->
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+              <h5>Nomination Details</h5>
+              <div formGroupName="nomination">
+                <div class="mb-3">
+                  <label>Name</label>
+                  <input formControlName="name" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Relation</label>
+                  <input formControlName="relation" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Occupation</label>
+                  <input formControlName="occupation" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Address</label>
+                  <input formControlName="address" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Age</label>
+                  <input formControlName="age" class="form-control" type="number" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Person Details -->
+            <fieldset formGroupName="contactPersonDetails" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Contact Person Details</legend>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">Contact Person Name:</label>
+                  <input type="text" formControlName="contactPersonName" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Mobile No:</label>
+                  <input type="text" formControlName="mobileNo" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Designation:</label>
+                  <input type="text" formControlName="designation" class="form-control">
+                </div>
+              </div>
+
+              <br>
+
+              <!-- Communication Address -->
+              <fieldset formGroupName="communicationAddress" class="mb-3">
+                <legend class="h6">Communication Address</legend>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="form-label">City/Village:</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">District:</label>
+                    <input type="text" formControlName="district" class="form-control">
+                  </div>
+                 
+                  <div class="col-md-4">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
+                  </div>
+                 
+                
+                  <div class="col-md-4">
+                    <label class="form-label">Pin Code:</label>
+                    <input type="text" formControlName="pinCode" class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+            </fieldset>
+
 
             <!-- Certificate Details Card -->
             <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
@@ -357,7 +463,8 @@
               <div class="row">
                 <div class="col-md-4">
                   <label class="form-label">Bank Account Type:</label>
-                  <select formControlName="bank_acc_type" class="form-control" (change)="onBankAccountTypeChange($event)">
+                  <select formControlName="bank_acc_type" class="form-control"
+                    (change)="onBankAccountTypeChange($event)">
                     <option value="" disabled selected>Select Account Type</option>
                     <option value="Saving A/c">Saving A/c</option>
                     <option value="Joint A/c">Joint A/c</option>

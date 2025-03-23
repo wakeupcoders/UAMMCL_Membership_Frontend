@@ -33,4 +33,15 @@ export class ViewordinaryformComponent implements OnInit {
 
   }
 
+  printDiv(): void {
+    const printContents = document.getElementById("printableForm")?.innerHTML;
+    if (printContents) {
+      const originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      window.location.reload(); // Reload to restore bindings
+    }
+  }
+
 }

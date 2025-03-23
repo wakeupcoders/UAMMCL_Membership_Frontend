@@ -23,6 +23,7 @@ export class NominalmembershipformComponent implements OnInit {
   selectedMember;
   showOtherTradingType = false;
   showOtherMembershipType = false;
+  showOtherEntityType=false;
   showHolderType = false;
   editMode = false;
   p: number = 1;
@@ -39,6 +40,7 @@ export class NominalmembershipformComponent implements OnInit {
       registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
         nameOfApplicant: [''.toUpperCase()],
         dateOfIncorporation: [''],
+        dateOfBirth: [''],
         registeredAddress: this.fb.group({
           state: [''],
           city: [''],
@@ -56,7 +58,8 @@ export class NominalmembershipformComponent implements OnInit {
         other_membership_type: [],
         trading_type: [],
         other_trading_type: [],
-        legal_entity_type: []
+        legal_entity_type: [],
+        other_legal_entity_type:[]
       }),
       idInformation: this.fb.group({
         pan: [''],
@@ -78,6 +81,25 @@ export class NominalmembershipformComponent implements OnInit {
         gstRegistrationNo: [''],
         gstStateCode: [''],
         gstAddress: this.fb.group({
+          state: [''],
+          city: [''],
+          district: [''],
+          tehsil: [''],
+          pinCode: ['']
+        })
+      }),
+      nomination: this.fb.group({
+        name: [''],
+        relation: [''],
+        occupation: [''],
+        address: [''],
+        age: [''],
+      }),
+      contactPersonDetails: this.fb.group({
+        contactPersonName: [''],
+        mobileNo: [''],
+        designation: [''],
+        communicationAddress: this.fb.group({
           state: [''],
           city: [''],
           district: [''],
@@ -130,6 +152,10 @@ export class NominalmembershipformComponent implements OnInit {
     this.showOtherTradingType = event.target.value === 'Others';
   }
 
+  onLegalEntityTypeChange(event: any) {
+    this.showOtherEntityType = event.target.value === 'Others';
+  }
+  
   onBankAccountTypeChange(event: any) {
     this.showHolderType = event.target.value === 'Joint A/c';
   }
@@ -155,7 +181,8 @@ export class NominalmembershipformComponent implements OnInit {
     this.registrationForm.patchValue({
       registrationInformation: {
         nameOfApplicant: member.registrationInformation.nameOfApplicant,
-        dateOfIncorporation: member.registrationInformation.dateOfIncorporation,
+        dateOfIncorporation:this.formatDate(member.registrationInformation.dateOfIncorporation),
+        dateOfBirth:this.formatDate(member.registrationInformation.dateOfBirth),
         registeredAddress: {
           state: member["registrationInformation"].registeredAddress?.state,
           city: member["registrationInformation"].registeredAddress?.city,
@@ -173,7 +200,8 @@ export class NominalmembershipformComponent implements OnInit {
         other_membership_type: member.memberInformation?.other_membership_type || '',
         trading_type: member.memberInformation?.trading_type,
         other_trading_type: member.memberInformation?.other_trading_type || '',
-        legal_entity_type: member.memberInformation?.legal_entity_type
+        legal_entity_type: member.memberInformation?.legal_entity_type,
+        other_legal_entity_type:member.memberInformation?.other_legal_entity_type
       },
       
       idInformation: {
@@ -204,6 +232,25 @@ export class NominalmembershipformComponent implements OnInit {
           pinCode: member.gstInformation?.gstAddress?.pinCode
         }
       },
+      nomination: {
+        name: member.nomination?.name,
+        relation: member.nomination?.relation,
+        occupation: member.nomination?.occupation,
+        address: member.nomination?.address,
+        age: member.nomination?.age,
+      },
+      contactPersonDetails: {
+        contactPersonName: member.contactPersonDetails?.contactPersonName || '',
+        mobileNo: member.contactPersonDetails?.mobileNo || '',
+        designation: member.contactPersonDetails?.designation || '',
+        communicationAddress: {
+          state: member.contactPersonDetails?.communicationAddress?.state || '',
+          city: member.contactPersonDetails?.communicationAddress?.city || '',
+          district: member.contactPersonDetails?.communicationAddress?.district || '',
+          tehsil: member.contactPersonDetails?.communicationAddress?.tehsil || '',
+          pinCode: member.contactPersonDetails?.communicationAddress?.pinCode || ''
+        }
+      },
       // Adding certificateDetails
       certificateDetails: {
         register_number: member.certificateDetails?.register_number,
@@ -232,6 +279,12 @@ export class NominalmembershipformComponent implements OnInit {
 
 
     });
+  }
+
+  formatDate(dateString: any): string | null {
+    if (!dateString) return null; // Handle null/undefined values
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]; // Extract YYYY-MM-DD format
   }
 
   deletePopup(id: string): void {
