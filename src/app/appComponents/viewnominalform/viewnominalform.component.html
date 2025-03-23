@@ -29,6 +29,24 @@
                 <span class="line">{{ nominalFormDetail?.memberInformation?.other_membership_type }}</span>
             </div>
 
+            <div class="section">
+                <label>Trading Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.trading_type }}</span>
+            </div>
+            <div class="section">
+                <label>Other Trading Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.other_trading_type }}</span>
+            </div>
+
+            <div class="section">
+                <label>Legal Entity Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.legal_entity_type }}</span>
+            </div>
+            <div class="section">
+                <label>Other Legal Entity Type:</label> 
+                <span class="line">{{ nominalFormDetail?.memberInformation?.other_legal_entity_type }}</span>
+            </div>
+
             <br>
             <!-- Registration Information -->
             <h3>Registration Information</h3>
@@ -45,6 +63,22 @@
                 <label>Date of Birth or Firm Incorporation Date:</label> 
                 <span class="line">{{ nominalFormDetail?.registrationInformation?.dateOfBirth }}</span>
             </div>
+
+            <div class="section">
+                <label>Registered Address:</label> 
+                <span class="line">
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.city }},
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.tehsil }},
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.district }},
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.state }},
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.pinCode }},
+                    {{ nominalFormDetail?.registrationInformation?.registeredAddress.zone }},
+                </span>
+            </div>
+            <div class="section">
+                <label>About Entity:</label> 
+                <span class="line">{{ nominalFormDetail?.registrationInformation.aboutEntity }}</span>
+            </div>
             
             <br>
             <!-- ID Information -->
@@ -55,8 +89,20 @@
                 <span class="line">{{ nominalFormDetail?.idInformation?.pan }}</span>
             </div>
             <div class="section">
+                <label>TAN:</label> 
+                <span class="line">{{ nominalFormDetail?.idInformation?.itan }}</span>
+            </div>
+            <div class="section">
+                <label>GST:</label> 
+                <span class="line">{{ nominalFormDetail?.idInformation?.gstNumber }}</span>
+            </div>
+            <div class="section">
                 <label>Aadhar:</label> 
                 <span class="line">{{ nominalFormDetail?.idInformation?.aadhar }}</span>
+            </div>
+            <div class="section">
+                <label>Any Other Id:</label> 
+                <span class="line">{{ nominalFormDetail?.idInformation?.idNumber }}</span>
             </div>
 
             <br>
@@ -72,6 +118,44 @@
                 <span class="line">{{ nominalFormDetail?.contactInformation?.emailId }}</span>
             </div>
 
+            <div class="section">
+                <label>Name of Entity:</label> 
+                <span class="line">{{ nominalFormDetail?.contactInformation?.name_of_entity }}</span>
+            </div>
+
+            <div class="section">
+                <label>License Number:</label> 
+                <span class="line">{{ nominalFormDetail?.contactInformation?.licenseNo }}</span>
+            </div>
+
+            <br>
+            <!-- Nomination Information -->
+            <h3>GST Information</h3>
+            <hr>
+            <div class="section">
+                <label>GST Registeration Number:</label> 
+                <span class="line">{{ nominalFormDetail?.gstInformation?.gstRegistrationNo }}</span>
+            </div>
+            
+            <div class="section">
+                <label>GST State Code:</label> 
+                <span class="line">{{ nominalFormDetail?.gstInformation?.gstStateCode }}</span>
+            </div>
+            
+
+            <div class="section">
+                <label>Address:</label> 
+                <span class="line">
+                    {{ nominalFormDetail?.gstInformation.gstAddress.city }},
+                    {{ nominalFormDetail?.gstInformation.gstAddress.tehsil }},
+                    {{ nominalFormDetail?.gstInformation.gstAddress.district }},
+                    {{ nominalFormDetail?.gstInformation.gstAddress.state }},
+                    {{ nominalFormDetail?.gstInformation.gstAddress.pinCode }},
+                    {{ nominalFormDetail?.gstInformation.gstAddress.zone }},
+                </span>
+            </div>
+            
+
             <br>
             <!-- Nomination Information -->
             <h3>Nomination Information</h3>
@@ -80,10 +164,77 @@
                 <label>Nominee Name:</label> 
                 <span class="line">{{ nominalFormDetail?.nomination?.name }}</span>
             </div>
+            
             <div class="section">
                 <label>Relation:</label> 
                 <span class="line">{{ nominalFormDetail?.nomination?.relation }}</span>
             </div>
+            
+            <div class="section">
+                <label>Occupation:</label> 
+                <span class="line">{{ nominalFormDetail?.nomination?.occupation }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Address:</label> 
+                <span class="line">{{ nominalFormDetail?.nomination?.address }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Age:</label> 
+                <span class="line">{{ nominalFormDetail?.nomination?.age }}</span>
+            </div>
+
+
+            <br>
+            <!-- Nomination Information -->
+            <h3>Contact Person Information</h3>
+            <hr>
+            <div class="section">
+                <label>Person Name:</label> 
+                <span class="line">{{ nominalFormDetail?.contactPersonDetails?.contactPersonName }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Mobile Number:</label> 
+                <span class="line">{{ nominalFormDetail?.contactPersonDetails?.mobileNo }}</span>
+
+            </div>
+            
+            <div class="section">
+                <label>Designation:</label> 
+                <span class="line">{{ nominalFormDetail?.contactPersonDetails?.designation }}</span>
+            </div>
+
+            <div class="section">
+                <label>Address:</label> 
+                <span class="line">
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.city }},
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.tehsil }},
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.district }},
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.state }},
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.pinCode }},
+                    {{ nominalFormDetail?.contactPersonDetails.communicationAddress.zone }},
+                </span>
+            </div>
+          
+            
+            <br>
+            <!-- Nomination Information -->
+            <h3>Registered with Any Other /FEDERATION/ASSOCIATION/E-Marketplace/Any Other</h3>
+            <hr>
+            <div class="section">
+                <label>Member Number:</label> 
+                <span class="line">{{ nominalFormDetail?.registeredFAEODetails?.member_number }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Name of Entity:</label> 
+                <span class="line">{{ nominalFormDetail?.registeredFAEODetails?.name_of_entity }}</span>
+
+            </div>
+            
+          
 
             <br>
             <!-- Bank Information -->
@@ -97,6 +248,36 @@
                 <label>Account Number:</label> 
                 <span class="line">{{ nominalFormDetail?.bankDetails?.account_number }}</span>
             </div>
+            <div class="section">
+                <label>Bank Account Type:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.bank_acc_type }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Holder Type:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.holder_type }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Bank Name:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.bank_name }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Holder Name:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.holder_name }}</span>
+            </div>
+            
+            <div class="section">
+                <label>Account Number:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.account_number }}</span>
+            </div>
+            
+            <div class="section">
+                <label>IFSC Code:</label> 
+                <span class="line">{{ nominalFormDetail?.bankDetails?.ifsc_code }}</span>
+            </div>
+            
 
             <br>
             <!-- Receipt Information -->

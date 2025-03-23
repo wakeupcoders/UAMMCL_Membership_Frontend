@@ -34,7 +34,7 @@
         <hr>
 
         <div class="mb-3">
-          <label>Name of Applicant</label>
+          <label>Name of Applicant <i class="text-danger">(Required)</i></label>
           <input formControlName="nameOfApplicant" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('nameOfApplicant')?.touched && memberForm.get('nameOfApplicant')?.errors?.['required']">
@@ -44,7 +44,7 @@
 
         <div class="mb-3">
           <label>Membership ID</label>
-          <input formControlName="membership_id" class="form-control" type="text" />
+          <input formControlName="membership_id" class="form-control" type="text" readonly placeholder="Auto Generated" />
           <div class="text-danger"
             *ngIf="memberForm.get('membership_id')?.touched && memberForm.get('membership_id')?.errors?.['required']">
             Membership ID is required.
@@ -52,7 +52,7 @@
         </div>
 
         <div class="mb-3">
-          <label>State</label>
+          <label>State <i class="text-danger">(Required)</i></label>
           <input formControlName="state" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('state')?.touched && memberForm.get('state')?.errors?.['required']">
@@ -61,7 +61,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Resident Of</label>
+          <label>Resident Of <i class="text-danger">(Required)</i></label>
           <input formControlName="residentOf" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('residentOf')?.touched && memberForm.get('residentOf')?.errors?.['required']">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Shares</label>
+          <label>Shares <i class="text-danger">(Required)</i></label>
           <input formControlName="shares" class="form-control" type="number" />
           <div class="text-danger"
             *ngIf="memberForm.get('shares')?.touched && memberForm.get('shares')?.errors?.['required']">
@@ -86,7 +86,7 @@
         <hr>
 
         <div class="mb-3">
-          <label>Full Name</label>
+          <label>Full Name <i class="text-danger">(Required)</i></label>
           <input formControlName="fullName" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('fullName')?.touched && memberForm.get('fullName')?.errors?.['required']">
@@ -95,7 +95,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Mother's Name</label>
+          <label>Mother's Name <i class="text-danger">(Required)</i></label>
           <input formControlName="motherName" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('motherName')?.touched && memberForm.get('motherName')?.errors?.['required']">
@@ -104,7 +104,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Wife's Name</label>
+          <label>Wife's Name <i class="text-danger">(Required)</i></label>
           <input formControlName="wifeName" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('wifeName')?.touched && memberForm.get('wifeName')?.errors?.['required']">
@@ -113,7 +113,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Age</label>
+          <label>Age <i class="text-danger">(Required)</i></label>
           <input formControlName="age" class="form-control" type="number" />
           <div class="text-danger"
             *ngIf="memberForm.get('age')?.touched && memberForm.get('age')?.errors?.['required']">
@@ -122,7 +122,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Date of Birth</label>
+          <label>Date of Birth <i class="text-danger">(Required)</i></label>
           <input formControlName="dateOfBirth" class="form-control" type="date" />
           <div class="text-danger"
             *ngIf="memberForm.get('dateOfBirth')?.touched && memberForm.get('dateOfBirth')?.errors?.['required']">
@@ -131,7 +131,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Educational Qualification</label>
+          <label>Educational Qualification <i class="text-danger">(Required)</i></label>
           <input formControlName="educationalQualification" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('educationalQualification')?.touched && memberForm.get('educationalQualification')?.errors?.['required']">
@@ -140,7 +140,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Marital Status</label>
+          <label>Marital Status <i class="text-danger">(Required)</i></label>
           <select formControlName="maritalStatus" class="form-control">
             <option value="">Select</option>
             <option value="Single">Single</option>
@@ -154,7 +154,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Permanent Address</label>
+          <label>Permanent Address <i class="text-danger">(Required)</i></label>
           <input formControlName="permanentAddress" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('permanentAddress')?.touched && memberForm.get('permanentAddress')?.errors?.['required']">
@@ -163,7 +163,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Permanent Pin Code</label>
+          <label>Permanent Pin Code <i class="text-danger">(Required)</i></label>
           <input formControlName="permanentPinCode" class="form-control" type="number" />
           <div class="text-danger"
             *ngIf="memberForm.get('permanentPinCode')?.touched && memberForm.get('permanentPinCode')?.errors?.['required']">
@@ -172,7 +172,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Present Address</label>
+          <label>Present Address <i class="text-danger">(Required)</i></label>
           <input formControlName="presentAddress" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('presentAddress')?.touched && memberForm.get('presentAddress')?.errors?.['required']">
@@ -181,7 +181,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Present Pin Code</label>
+          <label>Present Pin Code <i class="text-danger">(Required)</i></label>
           <input formControlName="presentPinCode" class="form-control" type="number" />
           <div class="text-danger"
             *ngIf="memberForm.get('presentPinCode')?.touched && memberForm.get('presentPinCode')?.errors?.['required']">
@@ -190,7 +190,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Telephone Number</label>
+          <label>Telephone Number <i class="text-danger">(Required)</i></label>
           <input formControlName="telephoneNumber" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('telephoneNumber')?.touched && memberForm.get('telephoneNumber')?.errors?.['required']">
@@ -199,7 +199,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Email</label>
+          <label>Email <i class="text-danger">(Required)</i></label>
           <input formControlName="email" class="form-control" type="email" />
           <div class="text-danger"
             *ngIf="memberForm.get('email')?.touched && memberForm.get('email')?.errors?.['required']">
@@ -208,7 +208,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Aadhar Card</label>
+          <label>Aadhar Card <i class="text-danger">(Required)</i></label>
           <input formControlName="aadharCard" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('aadharCard')?.touched && memberForm.get('aadharCard')?.errors?.['required']">
@@ -217,7 +217,7 @@
         </div>
 
         <div class="mb-3">
-          <label>PAN Card</label>
+          <label>PAN Card <i class="text-danger">(Required)</i></label>
           <input formControlName="panCard" class="form-control" type="text" />
           <div class="text-danger"
             *ngIf="memberForm.get('panCard')?.touched && memberForm.get('panCard')?.errors?.['required']">
@@ -233,7 +233,7 @@
         <h5>Nomination Details</h5>
         <div formGroupName="nomination">
           <div class="mb-3">
-            <label>Name</label>
+            <label>Name <i class="text-danger">(Required)</i></label>
             <input formControlName="name" class="form-control" type="text" />
             <div class="text-danger"
               *ngIf="memberForm.get('nomination.name')?.touched && memberForm.get('nomination.name')?.errors?.['required']">
@@ -242,7 +242,7 @@
           </div>
 
           <div class="mb-3">
-            <label>Relation</label>
+            <label>Relation <i class="text-danger">(Required)</i></label>
             <input formControlName="relation" class="form-control" type="text" />
             <div class="text-danger"
               *ngIf="memberForm.get('nomination.relation')?.touched && memberForm.get('nomination.relation')?.errors?.['required']">
@@ -251,7 +251,7 @@
           </div>
 
           <div class="mb-3">
-            <label>Occupation</label>
+            <label>Occupation <i class="text-danger">(Required)</i></label>
             <input formControlName="occupation" class="form-control" type="text" />
             <div class="text-danger"
               *ngIf="memberForm.get('nomination.occupation')?.touched && memberForm.get('nomination.occupation')?.errors?.['required']">
@@ -260,7 +260,7 @@
           </div>
 
           <div class="mb-3">
-            <label>Address</label>
+            <label>Address <i class="text-danger">(Required)</i></label>
             <input formControlName="address" class="form-control" type="text" />
             <div class="text-danger"
               *ngIf="memberForm.get('nomination.address')?.touched && memberForm.get('nomination.address')?.errors?.['required']">
@@ -269,7 +269,7 @@
           </div>
 
           <div class="mb-3">
-            <label>Age</label>
+            <label>Age <i class="text-danger">(Required)</i></label>
             <input formControlName="age" class="form-control" type="number" />
             <div class="text-danger"
               *ngIf="memberForm.get('nomination.age')?.touched && memberForm.get('nomination.age')?.errors?.['required']">
@@ -283,10 +283,11 @@
       <!-- Certificate Details Card -->
       <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
         <h5>Certificate Details</h5>
+       <marquee> <p class="text-danger">Note: Certificates Details are Read Only and Its Auto Generated.</p></marquee>
         <div formGroupName="certificateDetails">
           <div class="mb-3">
             <label>Register Number</label>
-            <input formControlName="register_number" class="form-control" type="text" />
+            <input formControlName="register_number" class="form-control" type="text" readonly placeholder="Auto Generated" />
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.register_number')?.touched && memberForm.get('certificateDetails.register_number')?.errors?.['required']">
               Register Number is required.
@@ -295,7 +296,7 @@
 
           <div class="mb-3">
             <label>Certificate Number</label>
-            <input formControlName="certificate_number" class="form-control" type="text" />
+            <input formControlName="certificate_number" class="form-control" type="text" readonly placeholder="Auto Generated" />
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.certificate_number')?.touched && memberForm.get('certificateDetails.certificate_number')?.errors?.['required']">
               Certificate Number is required.
@@ -304,7 +305,7 @@
 
           <div class="mb-3">
             <label>Holding Identification Number</label>
-            <input formControlName="Holding_Iden_number" class="form-control" type="text" />
+            <input formControlName="Holding_Iden_number" class="form-control" type="text" readonly placeholder="Auto Generated" />
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.Holding_Iden_number')?.touched && memberForm.get('certificateDetails.Holding_Iden_number')?.errors?.['required']">
               Holding Identification Number is required.
@@ -313,7 +314,7 @@
 
           <div class="mb-3">
             <label>Share Start Number</label>
-            <input formControlName="share_start_number" class="form-control" type="number" />
+            <input formControlName="share_start_number" class="form-control" type="number" readonly placeholder="Auto Generated" />
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.share_start_number')?.touched && memberForm.get('certificateDetails.share_start_number')?.errors?.['required']">
               Share Start Number is required.
@@ -322,7 +323,7 @@
 
           <div class="mb-3">
             <label>Share End Number</label>
-            <input formControlName="share_end_number" class="form-control" type="number" />
+            <input formControlName="share_end_number" class="form-control" type="number" readonly placeholder="Auto Generated" />
             <div class="text-danger"
               *ngIf="memberForm.get('certificateDetails.share_end_number')?.touched && memberForm.get('certificateDetails.share_end_number')?.errors?.['required']">
               Share End Number is required.
@@ -349,7 +350,7 @@
         <h5>Payment Details</h5>
 
         <div class="mb-3">
-          <label>Receipt Number</label>
+          <label>Receipt Number <i class="text-danger">(Required)</i></label>
           <input formControlName="receiptNumber" class="form-control" type="number" />
           <div class="text-danger"
             *ngIf="memberForm.get('receiptNumber')?.touched && memberForm.get('receiptNumber')?.errors?.['required']">
@@ -362,7 +363,7 @@
         </div>
 
         <div class="mb-3">
-          <label>Payment Mode</label>
+          <label>Payment Mode <i class="text-danger">(Required)</i></label>
           <select formControlName="paymentMode" class="form-control">
             <option value="">Select</option>
             <option value="NEFT">NEFT</option>

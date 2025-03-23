@@ -38,7 +38,7 @@ export class NominalmembershipformComponent implements OnInit {
   constructor(private fb: FormBuilder, private nominalService: NominalService,  private router: Router) {
     this.registrationForm = this.fb.group({
       registrationInformation: this.fb.group({  // 👈 nameOfApplicant is inside this
-        nameOfApplicant: [''.toUpperCase()],
+        nameOfApplicant: [''.toUpperCase(), [Validators.required]],
         dateOfIncorporation: [''],
         dateOfBirth: [''],
         registeredAddress: this.fb.group({
@@ -53,7 +53,7 @@ export class NominalmembershipformComponent implements OnInit {
       }),
       memberInformation: this.fb.group({
         membership_id: [''],
-        shares: [],
+        shares: [1, [Validators.required]],
         membership_type: [],
         other_membership_type: [],
         trading_type: [],
@@ -65,7 +65,7 @@ export class NominalmembershipformComponent implements OnInit {
         pan: [''],
         itan: [''],
         gstNumber: [''],
-        aadhar: [''],
+        aadhar: ['', [Validators.required]],
         idNumber: ['']
       }),
       contactInformation: this.fb.group({

@@ -33,7 +33,7 @@ export class OrdinarymembershipformComponent implements OnInit {
   constructor(private fb: FormBuilder, private genericService: GenericService, private router: Router, private http: HttpClient) {
     this.memberForm = this.fb.group({
       nameOfApplicant: ['', [Validators.required]],
-      membership_id: ['', [Validators.required]],
+      membership_id: [''],
       state: ['', [Validators.required]],
       residentOf: ['', [Validators.required]],
       shares: ['', [Validators.required, Validators.min(1)]],
@@ -60,11 +60,11 @@ export class OrdinarymembershipformComponent implements OnInit {
         age: ['', [Validators.required, Validators.min(1)]],
       }),
       certificateDetails: this.fb.group({
-        register_number: ['', Validators.required],
-        certificate_number: ['', Validators.required],
-        Holding_Iden_number: ['', Validators.required],
-        share_start_number: ['', [Validators.required, Validators.required]],
-        share_end_number: ['', [Validators.required, Validators.required]],
+        register_number: [''],
+        certificate_number: [''],
+        Holding_Iden_number: [''],
+        share_start_number: [''],
+        share_end_number: [''],
         // value_of_share: ['100', [Validators.required, Validators.min(1)]],
       }),
       receiptNumber: ['', [Validators.required, Validators.min(1)]],
@@ -148,7 +148,7 @@ export class OrdinarymembershipformComponent implements OnInit {
       motherName: member.motherName,
       wifeName: member.wifeName,
       age: member.age,
-      dateOfBirth: member.dateOfBirth,
+      dateOfBirth: this.formatDate(member.dateOfBirth),
       educationalQualification: member.educationalQualification,
       maritalStatus: member.maritalStatus,
       permanentAddress: member.permanentAddress,
@@ -180,6 +180,12 @@ export class OrdinarymembershipformComponent implements OnInit {
 
     // Additional logic if needed
     // this.showForm(true);
+  }
+
+  formatDate(dateString: any): string | null {
+    if (!dateString) return null; // Handle null/undefined values
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]; // Extract YYYY-MM-DD format
   }
 
   deletePopup(id: string): void {

@@ -45,8 +45,11 @@
                     placeholder="AUTO Generated">
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">Shares:</label>
+                  <label class="form-label">Shares: <i class="text-danger">(Required)</i></label>
                   <input type="number" formControlName="shares" class="form-control">
+                  <div class="text-danger" *ngIf="registrationForm.get('memberInformation.shares')?.touched && registrationForm.get('memberInformation.shares')?.errors?.['required']">
+                    Shares is required.
+                  </div>
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Membership Type:</label>
@@ -125,9 +128,13 @@
               <legend class="h5">Registration Information</legend>
               <div class="row">
                 <div class="col-md-6">
-                  <label class="form-label">Name of Applicant:</label>
+                  <label class="form-label">Name of Applicant: <i class="text-danger">(Required)</i></label>
                   <input type="text" formControlName="nameOfApplicant" class="form-control"
                     style="text-transform: uppercase;" (input)="convertToUppercase('nameOfApplicant')">
+                    <div class="text-danger" *ngIf="registrationForm.get('registrationInformation.nameOfApplicant')?.touched && registrationForm.get('registrationInformation.nameOfApplicant')?.errors?.['required']">
+                      Name is required.
+                  </div>
+                  
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Date of Incorporation</label>
@@ -156,7 +163,7 @@
                     <label class="form-label">District:</label>
                     <input type="text" formControlName="district" class="form-control">
                   </div>
-                 
+
                   <div class="col-md-4">
                     <label class="form-label">State:</label>
                     <input type="text" formControlName="state" class="form-control">
@@ -199,8 +206,12 @@
                   <input type="text" formControlName="gstNumber" class="form-control">
                 </div>
                 <div class="col-md-4">
-                  <label class="form-label">Aadhar:</label>
+                  <label class="form-label">Aadhar: <i class="text-danger">(Required)</i></label>
                   <input type="text" formControlName="aadhar" class="form-control">
+                  <div class="text-danger" *ngIf="registrationForm.get('idInformation.aadhar')?.touched && registrationForm.get('idInformation.aadhar')?.errors?.['required']">
+                    Adhaar is required.
+                </div>
+                  
                 </div>
                 <div class="col-md-4">
                   <label class="form-label">Any Other ID Number:</label>
@@ -355,13 +366,13 @@
                     <label class="form-label">District:</label>
                     <input type="text" formControlName="district" class="form-control">
                   </div>
-                 
+
                   <div class="col-md-4">
                     <label class="form-label">State:</label>
                     <input type="text" formControlName="state" class="form-control">
                   </div>
-                 
-                
+
+
                   <div class="col-md-4">
                     <label class="form-label">Pin Code:</label>
                     <input type="text" formControlName="pinCode" class="form-control">
@@ -562,7 +573,7 @@
 
             <!-- Buttons -->
             <div class="text-center">
-              <button type="submit" class="btn btn-dark me-2">Submit</button>
+              <button type="submit" class="btn btn-dark me-2" [disabled]="registrationForm.invalid">Submit</button>
               <button type="button" class="btn btn-danger" (click)="showForm(true)">Cancel</button>
             </div>
 
