@@ -12,7 +12,8 @@ import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalr
 import { ViewnominalformComponent } from './appComponents/viewnominalform/viewnominalform.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule), pathMatch: 'full' }, // Default route
+  { path: '', component: OrdinarymembershipformComponent, canActivate: [AuthGuard] },
+  // { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule), pathMatch: 'full' }, // Default route
   { path: 'ordinary', component: OrdinarymembershipformComponent, canActivate: [AuthGuard] },
   { path: 'nominal', component: NominalmembershipformComponent, canActivate: [AuthGuard] },
   { path: 'certificate/:id', component: CertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
