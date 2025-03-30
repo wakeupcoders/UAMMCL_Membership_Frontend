@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/appServices/auth.service';
@@ -6,7 +6,8 @@ import { AuthService } from 'src/app/appServices/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
         response => { 
           this.authService.setToken(response.token);
           this.router.navigate(['/ordinary']);
-          alert("Login Successful"); 
           this.isLoading = false; },
         error => { alert("Login Failed"); this.isLoading = false; }
       );
