@@ -32,6 +32,17 @@ export class NominalcertificateComponent implements OnInit {
   }
 
 
+   printCertificate() {
+    const certificateContent = document.getElementById('content').innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = certificateContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+    window.location.reload(); // Optional: reloads page to restore events/styles
+  }
+
+
   downloadPDF() {
     const content = document.getElementById('content') as HTMLElement;
 
