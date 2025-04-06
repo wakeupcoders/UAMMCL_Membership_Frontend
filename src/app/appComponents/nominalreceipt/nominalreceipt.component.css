@@ -21,7 +21,7 @@ body {
     margin: -1px 0;
   }
   .section {
-    margin-bottom: 15px;
+    margin-bottom: 7px;
   }
   .section label {
     display: inline-block;
@@ -39,3 +39,7 @@ body {
     margin-top: 20px;
   }
   
+
+  .para{
+    font-size: 14px;
+  }
