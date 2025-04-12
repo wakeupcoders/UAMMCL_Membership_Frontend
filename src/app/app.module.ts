@@ -20,7 +20,8 @@ import { NominalmembershipformComponent } from './appComponents/nominalmembershi
 import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalreceipt.component';
 import { NominalcertificateComponent } from './appComponents/nominalcertificate/nominalcertificate.component';
 import { ViewnominalformComponent } from './appComponents/viewnominalform/viewnominalform.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../app/appGuards/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,13 @@ import { ViewnominalformComponent } from './appComponents/viewnominalform/viewno
     HttpClientModule,
     NgxPaginationModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
