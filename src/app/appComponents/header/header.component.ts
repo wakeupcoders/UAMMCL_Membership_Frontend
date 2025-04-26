@@ -8,16 +8,19 @@ import { AuthService } from 'src/app/appServices/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  sidebarOpen = false;
 
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
   }
 
-  constructor(public authService: AuthService, private router: Router) {}
+  toggleSidebar(): void {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
 
   logout() {
     this.authService.logout();
     this.router.navigate(['./auth/login']);
   }
-
 }
