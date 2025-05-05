@@ -18,6 +18,7 @@ export class AssociateinterestformComponent implements OnInit {
   registrationForm: FormGroup;
    isTableView = true;
    isLoading = false;
+   isHidden=false;
    nominalMembers;
    selectedMemberID;
    selectedMember;

@@ -1,19 +1,28 @@
 <app-loader *ngIf="isLoading"></app-loader>
 
-<div class="container">
-  <div class="container" *ngIf="!isLoading">
-    <span *ngIf="!isTableView">
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <div *ngIf="!isLoading">
+   
+   
+
+
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class=" mt-4">
         <div class="card shadow-lg">
-          <div class="card-header bg-dark text-white">
-            <h4>Associates Interest Form</h4>
+          <div class="card-header  text-white">
+            <h4> <img src="../../../assets/img/Unati-logo.png" alt="Logo" class="logo-size"></h4>
           </div>
+
+          <div>
+           
+            <br>
+            <h5 style="text-align: center;">The Unati Agri Allied and Marketing Multistate Cooperative Society Ltd <br><span class="hindititle">बहुराज्य सहकारी समितियां अधिनियम 2002 के अन्तर्गत, पंजीकृत संख्या MSCS/CR/1424/2023</span></h5>
+          </div>
+
           <div class="card-body">
 
             <fieldset formGroupName="memberInformation" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
-              <legend class="h5">Member Information</legend>
+              <legend class="h5">Associate Member Interest Form</legend>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" *ngIf="isHidden">
                   <label class="form-label">Membership ID:</label>
                   <input type="text" formControlName="membership_id" class="form-control" readonly
                     placeholder="AUTO Generated">
@@ -226,7 +235,7 @@
             <fieldset formGroupName="gstInformation" class="mb-3" class="shadow-lg p-3 mb-5 bg-white rounded">
               <legend class="h5">GST Information</legend>
               <div class="row">
-                <div class="col-md-4 form-check">
+                <div class="col-md-4 form-check" *ngIf="isHidden">
                   <input type="checkbox" formControlName="gstAvailable" class="form-check-input">
                   <label class="form-check-label">GST Available</label>
                 </div>
@@ -357,7 +366,7 @@
 
 
             <!-- Certificate Details Card -->
-            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3" *ngIf="isHidden">
               <h5>Certificate Details</h5>
               <marquee>
                 <p class="text-danger">Note: Certificates Details are Read Only and Its Auto Generated.</p>
@@ -443,7 +452,7 @@
             </fieldset>
 
             <!-- Bank Details -->
-            <fieldset formGroupName="bankDetails" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+            <fieldset formGroupName="bankDetails" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded" *ngIf="isHidden">
               <legend class="h5">Bank Details</legend>
               <div class="row">
                 <div class="col-md-4">
@@ -487,7 +496,7 @@
 
 
 
-            <div class="  shadow-lg p-3 mb-5 bg-white rounded p-3">
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3" *ngIf="isHidden">
               <h5>Payment Details</h5>
 
               <div class="mb-3">
@@ -554,8 +563,7 @@
         </div>
       </form>
 
-    </span>
+   
 
    
   </div>
-</div>
