@@ -18,6 +18,11 @@ export class NominalService {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       return this.http.post(this.apiUrl + '/api/NM', data, { headers });
     }
+
+    submitAssociatesInterestForm(data: any): Observable<any> {
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      return this.http.post(this.apiUrl + '/api/PA/interest', data, { headers });
+    }
   
   
     EditNominalMembershipForm(data: any, id: any): Observable<any> {

@@ -1,0 +1,561 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div class="container">
+  <div class="container" *ngIf="!isLoading">
+    <span *ngIf="!isTableView">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="container mt-4">
+        <div class="card shadow-lg">
+          <div class="card-header bg-dark text-white">
+            <h4>Associates Interest Form</h4>
+          </div>
+          <div class="card-body">
+
+            <fieldset formGroupName="memberInformation" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Member Information</legend>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">Membership ID:</label>
+                  <input type="text" formControlName="membership_id" class="form-control" readonly
+                    placeholder="AUTO Generated">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Shares: <i class="text-danger">(Required)</i></label>
+                  <input type="number" formControlName="shares" class="form-control">
+                  <div class="text-danger" *ngIf="registrationForm.get('memberInformation.shares')?.touched && registrationForm.get('memberInformation.shares')?.errors?.['required']">
+                    Shares is required.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Membership Type:</label>
+                  <select formControlName="membership_type" class="form-control"
+                    (change)="onMembershipTypeChange($event)">
+                    <option value="" disabled selected>Select Membership Type</option>
+                    <option value="Miller">Miller</option>
+                    <option value="Processor">Processor</option>
+                    <option value="Trader">Trader</option>
+                    <option value="Exporter">Exporter</option>
+                    <option value="Importer">Importer</option>
+                    <option value="Trading">Trading</option>
+                    <option value="Single Commodity Participant">Single Commodity Participant</option>
+                    <option value="Multiple Commodity Participants">Multiple Commodity Participants</option>
+                    <option value="Contractor">Contractor</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+
+                <!-- Input field for 'Others' (conditionally displayed) -->
+                <div class="col-md-4" *ngIf="showOtherMembershipType">
+                  <label class="form-label">Specify Other Membership Type:</label>
+                  <input type="text" formControlName="other_membership_type" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Trading Type:</label>
+                  <select formControlName="trading_type" class="form-control" (change)="onTradingTypeChange($event)">
+                    <option value="" disabled selected>Select Trading Type</option>
+                    <option value="Seller">Seller</option>
+                    <option value="Buyer">Buyer</option>
+                    <option value="Both">Both</option>
+                    <option value="Service Provider">Service Provider</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+
+                <!-- Input field for 'Others' (conditionally displayed) -->
+                <div class="col-md-4" *ngIf="showOtherTradingType">
+                  <label class="form-label">Specify Other Trading Type:</label>
+                  <input type="text" formControlName="other_trading_type" class="form-control">
+                </div>
+
+
+                <div class="col-md-4">
+                  <label class="form-label">Legal Entity Type:</label>
+                  <select formControlName="legal_entity_type" class="form-control"
+                    (change)="onLegalEntityTypeChange($event)">
+                    <option value="" disabled selected>Select Entity Type</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Sole Proprietorship">Sole Proprietorship</option>
+                    <option value="Private Limited">Private Limited</option>
+                    <option value="Public Ltd.">Public Ltd.</option>
+                    <option value="LLP">LLP</option>
+                    <option value="Partnership Firm">Partnership Firm</option>
+                    <option value="Farmer Produce Organisation (FPO)">Farmer Produce Organisation (FPO)</option>
+                    <option value="Cooperative Society">Cooperative Society</option>
+                    <option value="SHG">SHG</option>
+                    <option value="Cooperative Federation">Cooperative Federation</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+
+                <!-- Input field for 'Others' (conditionally displayed) -->
+                <div class="col-md-4" *ngIf="showOtherEntityType">
+                  <label class="form-label">Specify Other Entity Type:</label>
+                  <input type="text" formControlName="other_legal_entity_type" class="form-control">
+                </div>
+
+              </div>
+            </fieldset>
+
+            <!-- Registration Information -->
+            <fieldset formGroupName="registrationInformation" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <!-- 👈 Add this wrapper -->
+              <legend class="h5">Registration Information</legend>
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Name of Applicant: <i class="text-danger">(Required)</i></label>
+                  <input type="text" formControlName="nameOfApplicant" class="form-control"
+                    style="text-transform: uppercase;" (input)="convertToUppercase('nameOfApplicant')">
+                    <div class="text-danger" *ngIf="registrationForm.get('registrationInformation.nameOfApplicant')?.touched && registrationForm.get('registrationInformation.nameOfApplicant')?.errors?.['required']">
+                      Name is required.
+                  </div>
+                  
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Date of Incorporation</label>
+                  <input type="date" formControlName="dateOfIncorporation" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Date of Birth or Firm Incorporation Date</label>
+                  <input type="date" formControlName="dateOfBirth" class="form-control">
+                </div>
+              </div>
+              <br>
+              <!-- Registered Address -->
+              <fieldset formGroupName="registeredAddress" class="mb-3">
+                <legend class="h5">Registered Address</legend>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="form-label">City/Village or Address:</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">District:</label>
+                    <input type="text" formControlName="district" class="form-control">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Pin Code:</label>
+                    <input type="text" formControlName="pinCode" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Zone:</label>
+                    <input type="text" formControlName="zone" class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+              <div class="col-md-6">
+                <label class="form-label">About Entity:</label>
+                <input type="text" formControlName="aboutEntity" class="form-control">
+              </div>
+            </fieldset> <!-- 👈 Close the wrapper -->
+
+
+
+
+
+
+            <!-- ID Information -->
+            <fieldset formGroupName="idInformation" class="mb-3" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">ID Information</legend>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">PAN:</label>
+                  <input type="text" formControlName="pan" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">TAN:</label>
+                  <input type="text" formControlName="itan" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">GST Number:</label>
+                  <input type="text" formControlName="gstNumber" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Aadhar: <i class="text-danger">(Required)</i></label>
+                  <input type="text" formControlName="aadhar" class="form-control">
+                  <div class="text-danger" *ngIf="registrationForm.get('idInformation.aadhar')?.touched && registrationForm.get('idInformation.aadhar')?.errors?.['required']">
+                    Adhaar is required.
+                </div>
+                  
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Any Other ID Number:</label>
+                  <input type="text" formControlName="idNumber" class="form-control">
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Contact Information -->
+            <fieldset formGroupName="contactInformation" class="mb-3" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Contact Information</legend>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">Mobile No:</label>
+                  <input type="text" formControlName="mobileNo" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Email ID:</label>
+                  <input type="email" formControlName="emailId" class="form-control">
+                </div>
+
+                <div class="col-md-4 form-check mt-4">
+                  <input type="checkbox" formControlName="registeredWithOtherExchange" class="form-check-input">
+                  <label class="form-check-label">Registered with Other</label>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Name of Entity (Associated)</label>
+                  <input type="text" formControlName="name_of_entity" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">License No:</label>
+                  <input type="text" formControlName="licenseNo" class="form-control">
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- GST Information -->
+            <fieldset formGroupName="gstInformation" class="mb-3" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">GST Information</legend>
+              <div class="row">
+                <div class="col-md-4 form-check">
+                  <input type="checkbox" formControlName="gstAvailable" class="form-check-input">
+                  <label class="form-check-label">GST Available</label>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">GST Registration No:</label>
+                  <input type="text" formControlName="gstRegistrationNo" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">GST State Code:</label>
+                  <input type="text" formControlName="gstStateCode" class="form-control">
+                </div>
+              </div>
+
+              <fieldset formGroupName="gstAddress" class="mt-3">
+                <legend class="h6">GST Address</legend>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="form-label">City/Village:</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">District:</label>
+                    <input type="text" formControlName="district" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Pin Code:</label>
+                    <input type="text" formControlName="pinCode" class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+            </fieldset>
+
+
+
+            <!-- Nomination Details Card -->
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+              <h5>Nomination Details</h5>
+              <div formGroupName="nomination">
+                <div class="mb-3">
+                  <label>Name</label>
+                  <input formControlName="name" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Relation</label>
+                  <input formControlName="relation" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Occupation</label>
+                  <input formControlName="occupation" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Address</label>
+                  <input formControlName="address" class="form-control" type="text" />
+                </div>
+
+                <div class="mb-3">
+                  <label>Age</label>
+                  <input formControlName="age" class="form-control" type="number" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Person Details -->
+            <fieldset formGroupName="contactPersonDetails" class="shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Contact Person Details</legend>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">Contact Person Name:</label>
+                  <input type="text" formControlName="contactPersonName" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Mobile No:</label>
+                  <input type="text" formControlName="mobileNo" class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="form-label">Designation:</label>
+                  <input type="text" formControlName="designation" class="form-control">
+                </div>
+              </div>
+
+              <br>
+
+              <!-- Communication Address -->
+              <fieldset formGroupName="communicationAddress" class="mb-3">
+                <legend class="h6">Communication Address</legend>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <label class="form-label">City/Village:</label>
+                    <input type="text" formControlName="city" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Tehsil:</label>
+                    <input type="text" formControlName="tehsil" class="form-control">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">District:</label>
+                    <input type="text" formControlName="district" class="form-control">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label class="form-label">State:</label>
+                    <input type="text" formControlName="state" class="form-control">
+                  </div>
+
+
+                  <div class="col-md-4">
+                    <label class="form-label">Pin Code:</label>
+                    <input type="text" formControlName="pinCode" class="form-control">
+                  </div>
+                </div>
+              </fieldset>
+            </fieldset>
+
+
+            <!-- Certificate Details Card -->
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3">
+              <h5>Certificate Details</h5>
+              <marquee>
+                <p class="text-danger">Note: Certificates Details are Read Only and Its Auto Generated.</p>
+              </marquee>
+              <div formGroupName="certificateDetails">
+                <div class="mb-3">
+                  <label>Register Number</label>
+                  <input formControlName="register_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
+                  <div class="text-danger"
+                    *ngIf="registrationForm.get('certificateDetails.register_number')?.touched && registrationForm.get('certificateDetails.register_number')?.errors?.['required']">
+                    Register Number is required.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Certificate Number</label>
+                  <input formControlName="certificate_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
+                  <div class="text-danger"
+                    *ngIf="registrationForm.get('certificateDetails.certificate_number')?.touched && registrationForm.get('certificateDetails.certificate_number')?.errors?.['required']">
+                    Certificate Number is required.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Holding Identification Number</label>
+                  <input formControlName="Holding_Iden_number" class="form-control" type="text" readonly
+                    placeholder="AUTO Generated" />
+                  <div class="text-danger"
+                    *ngIf="registrationForm.get('certificateDetails.Holding_Iden_number')?.touched && registrationForm.get('certificateDetails.Holding_Iden_number')?.errors?.['required']">
+                    Holding Identification Number is required.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Share Start Number</label>
+                  <input formControlName="share_start_number" class="form-control" type="number" readonly
+                    placeholder="AUTO Generated" />
+                  <div class="text-danger"
+                    *ngIf="registrationForm.get('certificateDetails.share_start_number')?.touched && registrationForm.get('certificateDetails.share_start_number')?.errors?.['required']">
+                    Share Start Number is required.
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label>Share End Number</label>
+                  <input formControlName="share_end_number" class="form-control" type="number" readonly
+                    placeholder="AUTO Generated" />
+                  <div class="text-danger"
+                    *ngIf="registrationForm.get('certificateDetails.share_end_number')?.touched && registrationForm.get('certificateDetails.share_end_number')?.errors?.['required']">
+                    Share End Number is required.
+                  </div>
+                </div>
+
+
+                <!-- <div class="mb-3">
+            <label>Value of Share</label>
+            <input formControlName="value_of_share" class="form-control" type="text"/>
+            <div class="text-danger"
+              *ngIf="registrationForm.get('certificateDetails.value_of_share')?.touched && registrationForm.get('certificateDetails.value_of_share')?.errors?.['required']">
+              Value of Share is required.
+            </div>
+          </div> -->
+
+              </div>
+            </div>
+
+
+            <!-- Registered FAEO Details -->
+            <fieldset formGroupName="registeredFAEODetails" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Registered with Any Other /FEDERATION/ASSOCIATION/E-Marketplace/Any Other</legend>
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="form-label">Member Number:</label>
+                  <input type="text" formControlName="member_number" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Name of Entity:</label>
+                  <input type="text" formControlName="name_of_entity" class="form-control">
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Bank Details -->
+            <fieldset formGroupName="bankDetails" class="mb-3 shadow-lg p-3 mb-5 bg-white rounded">
+              <legend class="h5">Bank Details</legend>
+              <div class="row">
+                <div class="col-md-4">
+                  <label class="form-label">Bank Account Type:</label>
+                  <select formControlName="bank_acc_type" class="form-control"
+                    (change)="onBankAccountTypeChange($event)">
+                    <option value="" disabled selected>Select Account Type</option>
+                    <option value="Saving A/c">Saving A/c</option>
+                    <option value="Joint A/c">Joint A/c</option>
+                    <option value="Current A/c">Current A/c</option>
+                  </select>
+                </div>
+
+                <!-- Holder Type Dropdown (Visible only when "Joint A/c" is selected) -->
+                <div class="col-md-4" *ngIf="showHolderType">
+                  <label class="form-label">Holder Type:</label>
+                  <select formControlName="holder_type" class="form-control">
+                    <option value="" disabled selected>Select Holder Type</option>
+                    <option value="First Holder">First Holder</option>
+                    <option value="Second Holder">Second Holder</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Bank Name:</label>
+                  <input type="text" formControlName="bank_name" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Holder Name:</label>
+                  <input type="text" formControlName="holder_name" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Account Number:</label>
+                  <input type="text" formControlName="account_number" class="form-control">
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">IFSC Code:</label>
+                  <input type="text" formControlName="ifsc_code" class="form-control">
+                </div>
+              </div>
+            </fieldset>
+
+
+
+            <div class="  shadow-lg p-3 mb-5 bg-white rounded p-3">
+              <h5>Payment Details</h5>
+
+              <div class="mb-3">
+                <label>Receipt Number</label>
+                <input formControlName="receiptNumber" class="form-control" type="number" />
+                <div class="text-danger"
+                  *ngIf="registrationForm.get('receiptNumber')?.touched && registrationForm.get('receiptNumber')?.errors?.['required']">
+                  Receipt Number is required.
+                </div>
+                <div class="text-danger"
+                  *ngIf="registrationForm.get('receiptNumber')?.touched && registrationForm.get('receiptNumber')?.errors?.['min']">
+                  Receipt Number must be greater than 0.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label>Payment Mode</label>
+                <select formControlName="paymentMode" class="form-control">
+                  <option value="">Select</option>
+                  <option value="NEFT">NEFT</option>
+                  <option value="IMPS">IMPS</option>
+                  <option value="RTGS">RTGS</option>
+                  <option value="CHEQUE">CHEQUE</option>
+                  <option value="DEMAND DRAFT">DEMAND DRAFT</option>
+                  <option value="CASH">CASH</option>
+                  <option value="UPI">UPI</option>
+                  <option value="OTHERS">OTHERS</option>
+                </select>
+                <!-- <div class="text-danger"
+            *ngIf="registrationForm.get('maritalStatus')?.touched && registrationForm.get('maritalStatus')?.errors?.['required']">
+            Marital Status is required.
+          </div> -->
+              </div>
+            </div>
+
+            <div class="shadow-lg p-3 mb-5 bg-white rounded p-3 mb-3 mb-3" *ngIf="editMode==true">
+              <label>Attachments</label>
+              <div class="file-upload">
+                <input type="file" (change)="onFileSelected($event)" />
+                <a (click)="uploadFile()" class="btn btn-dark">Upload</a>
+                <p class="text-success">{{uploadMessage}}</p>
+              </div>
+
+              <hr>
+              <div class="file-card" *ngFor="let attachment of selectedMember.attachments">
+                <div class="file-info">
+                  <p>{{attachment}}</p>
+                </div>
+                <div class="file-actions">
+                  <a class="btn btn-dark" (click)="onView(attachment)">View</a>
+                  <a class="btn btn-danger" (click)="onDeleteAttachment(attachment)">Delete</a>
+                </div>
+              </div>
+
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark me-2" [disabled]="registrationForm.invalid">Submit</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </span>
+
+   
+  </div>
+</div>
