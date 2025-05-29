@@ -1,0 +1,149 @@
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div *ngIf="!isLoading">
+    <form [formGroup]="eoiForm" (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="card">
+            <div class="card-header text-white bg-dark">
+                <h4>
+                    <img src="../../../assets/img/Unati-logo.png" alt="Logo" class="logo-size">
+                </h4>
+                <h5 class="text-white text-center" style="margin-top:-20px;">
+                    The Unati Agri Allied and Marketing Multistate Cooperative Society Ltd <br>
+                    <span class="hindititle">
+                        बहुराज्य सहकारी समितियां अधिनियम 2002 के अन्तर्गत, पंजीकृत संख्या MSCS/CR/1424/2023
+                    </span>
+                </h5>
+            </div>
+
+            <div class="card-body">
+
+                 <h4 class="text-center mb-4" style="font-weight: bold;">Expression of Interest</h4>
+                <!-- General Info Card -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light fw-bold">General Information</div>
+                    <div class="card-body">
+
+                        <label><span class="text-danger">*</span> Entity Type</label>
+                        <select class="form-select mb-3" formControlName="entityType">
+                            <option value="">-- Select --</option>
+                            <option *ngFor="let type of entityTypes" [value]="type">{{ type }}</option>
+                        </select>
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('entityType')?.touched && eoiForm.get('entityType')?.invalid">
+                            Required
+                        </div>
+
+                        <label><span class="text-danger">*</span> Name of Applicant/Firm</label>
+                        <input class="form-control mb-3" formControlName="applicantName" />
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('applicantName')?.touched && eoiForm.get('applicantName')?.invalid">
+                            Required
+                        </div>
+
+                        <label><span class="text-danger">*</span> Gender</label>
+                        <select class="form-select mb-3" formControlName="gender">
+                            <option value="">-- Select --</option>
+                            <option *ngFor="let gender of genders" [value]="gender">{{ gender }}</option>
+                        </select>
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('gender')?.touched && eoiForm.get('gender')?.invalid">
+                            Required
+                        </div>
+
+                        <label><span class="text-danger">*</span> Father's Name</label>
+                        <input class="form-control mb-4" formControlName="fname" />
+                        <div class="text-danger" *ngIf="eoiForm.get('fname')?.touched && eoiForm.get('fname')?.invalid">
+                            Required
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Address Card -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light fw-bold">Address</div>
+                    <div class="card-body">
+
+                        <label><span class="text-danger">*</span> Address</label>
+                        <textarea class="form-control mb-3" formControlName="address"></textarea>
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('address')?.touched && eoiForm.get('address')?.invalid">
+                            Required
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label><span class="text-danger">*</span> State</label>
+                                <select class="form-select mb-3" formControlName="state">
+                                    <option value="">-- Select State --</option>
+                                    <option *ngFor="let state of indianStates" [value]="state">{{ state }}</option>
+                                </select>
+                                <div class="text-danger"
+                                    *ngIf="eoiForm.get('state')?.touched && eoiForm.get('state')?.invalid">
+                                    Required
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><span class="text-danger">*</span> Tehsil</label>
+                                <input class="form-control mb-3" formControlName="tehsil" />
+                                <div class="text-danger"
+                                    *ngIf="eoiForm.get('tehsil')?.touched && eoiForm.get('tehsil')?.invalid">
+                                    Required
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label><span class="text-danger">*</span> District</label>
+                                <input class="form-control mb-4" formControlName="district" />
+                                <div class="text-danger"
+                                    *ngIf="eoiForm.get('district')?.touched && eoiForm.get('district')?.invalid">
+                                    Required
+                                </div>
+                            </div>
+                        </div>
+
+                        <label><span class="text-danger">*</span> Pincode</label>
+                        <input class="form-control mb-3" formControlName="pincode" />
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('pincode')?.touched && eoiForm.get('pincode')?.invalid">
+                            Required (6-digit)
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light fw-bold">Contact Details</div>
+                    <div class="card-body">
+
+                        <label><span class="text-danger">*</span> Mobile</label>
+                        <input class="form-control mb-3" formControlName="mobile" />
+                        <div class="text-danger"
+                            *ngIf="eoiForm.get('mobile')?.touched && eoiForm.get('mobile')?.invalid">
+                            Required (10-digit)
+                        </div>
+
+                        <label><span class="text-danger">*</span> Email</label>
+                        <input class="form-control mb-3" formControlName="email" />
+                        <div class="text-danger" *ngIf="eoiForm.get('email')?.touched && eoiForm.get('email')?.invalid">
+                            Enter valid email
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <label>Comments</label>
+                <textarea class="form-control mb-3" formControlName="comments"></textarea>
+
+                <!-- Submit Button -->
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-dark me-2" [disabled]="eoiForm.invalid">Submit</button>
+                    <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+                </div>
+
+                <br><br>
+            </div>
+        </div>
+    </form>
+</div>

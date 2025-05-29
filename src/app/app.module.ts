@@ -23,6 +23,7 @@ import { ViewnominalformComponent } from './appComponents/viewnominalform/viewno
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../app/appGuards/auth.interceptor';
 import { AssociateinterestformComponent } from './appComponents/associateinterestform/associateinterestform.component';
+import { EOIComponent } from './appComponents/eoi/eoi.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { AssociateinterestformComponent } from './appComponents/associateinteres
     NominalreceiptComponent,
     NominalcertificateComponent,
     ViewnominalformComponent,
-    AssociateinterestformComponent
+    AssociateinterestformComponent,
+    EOIComponent
   ],
   imports: [
     BrowserModule,

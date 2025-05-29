@@ -1,0 +1,21 @@
+.logo-size {
+    height: 120px;
+    display: block;
+    margin: 0 auto;
+}
+
+.text-danger {
+  margin-top: -0.75rem;   /* small gap above the error message */
+  margin-bottom: 1rem;   /* larger gap below to add space before next input */
+}
+
+.card-header h4 {
+  font-size: 1.2rem; /* smaller than default h4 */
+  margin-bottom: 0.25rem;
+}
+
+.card-header h5 {
+  font-size: 1rem;  /* smaller than default h5 */
+  margin-top: -15px; /* slightly less negative margin */
+}
+
