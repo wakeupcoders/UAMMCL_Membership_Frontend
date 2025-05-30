@@ -64,8 +64,7 @@
                             Required
                         </div>
 
-                        <label><span class="text-danger">*</span> {{ isFirmSelected() ? 'Concerned Person' : "Father's
-                            Name" }} </label>
+                        <label><span class="text-danger">*</span> {{ isFirmSelected() ? 'Concerned Person' : "Father's Name" }} </label>
                         <input class="form-control mb-4" formControlName="fname" />
                         <div class="text-danger" *ngIf="eoiForm.get('fname')?.touched && eoiForm.get('fname')?.invalid">
                             Required
@@ -147,34 +146,38 @@
                     </div>
                 </div>
 
-                <!-- Comments -->
-                <label>Any Other Thoughts (Optional)</label>
-                <textarea class="form-control mb-3" formControlName="comments"></textarea>
+                <div class="container">
+                    <!-- Comments -->
+                    <label>Any Other Thoughts (Optional)</label>
+                    <textarea class="form-control mb-3" formControlName="comments"></textarea>
 
-                <div class="form-check my-3">
-                    <input type="checkbox" class="form-check-input" id="declarationCheck"
-                        (change)="onDeclarationChange($event)">
-                    <label class="form-check-label" for="declarationCheck">
-                        <strong>DECLARATION</strong><br />
-                        I hereby declare that I have shown expression of interest without any pressure/influence.
-                        I also declare that I will abide by all rules & regulations of the Society. By filling this
-                        form,
-                        it does not mean that my request is accepted. I will provide additional details and pay as per
-                        allocation of shares and applicable fee.
-                    </label>
-                </div>
-                <!-- Submit Button -->
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-dark me-2"
-                        [disabled]="eoiForm.invalid || isLoading || !isDeclarationChecked">
-                        <span *ngIf="!isLoading">Submit</span>
-                        <span *ngIf="isLoading">
-                            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
-                            Loading...
-                        </span>
-                    </button>
+                    <div class="form-check my-3">
+                        <input type="checkbox" class="form-check-input" id="declarationCheck"
+                            (change)="onDeclarationChange($event)">
+                        <label class="form-check-label" for="declarationCheck">
+                            <strong>DECLARATION</strong><br />
+                            I hereby declare that I have shown expression of interest without any pressure/influence.
+                            I also declare that I will abide by all rules & regulations of the Society. By filling this
+                            form,
+                            it does not mean that my request is accepted. I will provide additional details and pay as
+                            per
+                            allocation of shares and applicable fee.
+                        </label>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-dark me-2"
+                            [disabled]="eoiForm.invalid || isLoading || !isDeclarationChecked">
+                            <span *ngIf="!isLoading">Submit</span>
+                            <span *ngIf="isLoading">
+                                <span class="spinner-border spinner-border-sm me-1" role="status"
+                                    aria-hidden="true"></span>
+                                Loading...
+                            </span>
+                        </button>
 
-                    <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+                        <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+                    </div>
                 </div>
 
             </div>
