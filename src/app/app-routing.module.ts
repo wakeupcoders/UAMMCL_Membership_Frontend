@@ -11,14 +11,14 @@ import { NominalcertificateComponent } from './appComponents/nominalcertificate/
 import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalreceipt.component';
 import { ViewnominalformComponent } from './appComponents/viewnominalform/viewnominalform.component';
 import { AssociateinterestformComponent } from './appComponents/associateinterestform/associateinterestform.component';
-import { EOIComponent } from './appComponents/eoi/eoi.component';
+import { EOIRequestsComponent } from './appComponents/eoirequests/eoirequests.component';
 
 const routes: Routes = [
   { path: '', component: OrdinarymembershipformComponent, canActivate: [AuthGuard] },
   // { path: '', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule), pathMatch: 'full' }, // Default route
   { path: 'ordinary', component: OrdinarymembershipformComponent, canActivate: [AuthGuard] },
   { path: 'nominal', component: NominalmembershipformComponent, canActivate: [AuthGuard] },
-  { path: 'associates', component: EOIComponent },
+  // { path: 'associates', component: EOIComponent },
   { path: 'certificate/:id', component: CertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
   { path: 'viewordinary/:id', component: ViewordinaryformComponent,canActivate: [AuthGuard] }, // Dynamic route
   { path: 'viewnominal/:id', component: ViewnominalformComponent,canActivate: [AuthGuard] }, // Dynamic route
@@ -27,8 +27,10 @@ const routes: Routes = [
   { path: 'nominalcertificate/:id', component: NominalcertificateComponent, canActivate: [AuthGuard] }, // Dynamic route
   { path: 'receiptnominal/:id', component: NominalreceiptComponent, canActivate: [AuthGuard] }, // Dynamic route
 
+  { path: 'requests', component: EOIRequestsComponent, canActivate: [AuthGuard]},
 
   { path: 'auth', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+  { path: 'associates', loadChildren: () => import('./expression-of-interest/expression-of-interest.module').then(m => m.ExpressionOfInterestModule) },
 
 
   { path: '**', component: PageNotFoundComponent }, // Wildcard route for 404

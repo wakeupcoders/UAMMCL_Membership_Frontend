@@ -1,7 +1,21 @@
-<app-loader *ngIf="isLoading"></app-loader>
+<!-- <app-loader *ngIf="isLoading"></app-loader> -->
 
-<div *ngIf="!isLoading">
-    <form [formGroup]="eoiForm" (ngSubmit)="onSubmit()" class="mt-4">
+
+<div class="thank-you-container text-center" *ngIf="formSubmitted">
+  <div class="thank-you-box">
+    <div class="checkmark">
+      <i class="bi bi-check-circle-fill"></i>
+    </div>
+    <img src="../../../assets/img/Unati-logo.png" alt="Logo" class="logo-size">
+    <h2>Thank You!</h2>
+    <p>Your Expression of Interest has been submitted.</p>
+    <p>Our team will get back to you shortly.</p>
+  </div>
+</div>
+
+
+<div *ngIf="!formSubmitted">
+    <form [formGroup]="eoiForm" (ngSubmit)="onSubmit()" >
         <div class="card">
             <div class="card-header text-white bg-dark">
                 <h4>
@@ -17,7 +31,7 @@
 
             <div class="card-body">
 
-                 <h4 class="text-center mb-4" style="font-weight: bold;">Expression of Interest</h4>
+                <h4 class="text-center mb-4" style="font-weight: bold;">Expression of Interest</h4>
                 <!-- General Info Card -->
                 <div class="card mb-3">
                     <div class="card-header bg-light fw-bold">General Information</div>
@@ -133,12 +147,19 @@
                 </div>
 
                 <!-- Comments -->
-                <label>Comments</label>
+                <label>Any Other Thoughts (Optional)</label>
                 <textarea class="form-control mb-3" formControlName="comments"></textarea>
 
                 <!-- Submit Button -->
                 <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-dark me-2" [disabled]="eoiForm.invalid">Submit</button>
+                    <button type="submit" class="btn btn-dark me-2" [disabled]="eoiForm.invalid || isLoading">
+                        <span *ngIf="!isLoading">Submit</span>
+                        <span *ngIf="isLoading">
+                            <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </span>
+                    </button>
+
                     <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
                 </div>
 

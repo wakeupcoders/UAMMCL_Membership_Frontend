@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EOIComponent } from './eoi.component';
+import { EOIRequestsComponent } from './eoirequests.component';
 
-describe('EOIComponent', () => {
-  let component: EOIComponent;
-  let fixture: ComponentFixture<EOIComponent>;
+describe('EOIRequestsComponent', () => {
+  let component: EOIRequestsComponent;
+  let fixture: ComponentFixture<EOIRequestsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EOIComponent ]
+      declarations: [ EOIRequestsComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EOIComponent);
+    fixture = TestBed.createComponent(EOIRequestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

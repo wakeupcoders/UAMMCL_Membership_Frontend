@@ -13,8 +13,6 @@ import { CertificateComponent } from './appComponents/certificate/certificate.co
 import { PageNotFoundComponent } from './appComponents/page-not-found/page-not-found.component';
 import { ViewordinaryformComponent } from './appComponents/viewordinaryform/viewordinaryform.component';
 import { OrdinaryreceiptComponent } from './appComponents/ordinaryreceipt/ordinaryreceipt.component';
-// import { SignupComponent } from './appComponents/signup/signup.component';
-// import { LoginComponent } from './appComponents/login/login.component';
 import { NumberToWordsPipe } from './appPipes/number-to-words.pipe';
 import { NominalmembershipformComponent } from './appComponents/nominalmembershipform/nominalmembershipform.component';
 import { NominalreceiptComponent } from './appComponents/nominalreceipt/nominalreceipt.component';
@@ -23,7 +21,7 @@ import { ViewnominalformComponent } from './appComponents/viewnominalform/viewno
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../app/appGuards/auth.interceptor';
 import { AssociateinterestformComponent } from './appComponents/associateinterestform/associateinterestform.component';
-import { EOIComponent } from './appComponents/eoi/eoi.component';
+import { EOIRequestsComponent } from './appComponents/eoirequests/eoirequests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,15 +33,13 @@ import { EOIComponent } from './appComponents/eoi/eoi.component';
     PageNotFoundComponent,
     ViewordinaryformComponent,
     OrdinaryreceiptComponent,
-    // SignupComponent,
-    // LoginComponent,
     NumberToWordsPipe,
     NominalmembershipformComponent,
     NominalreceiptComponent,
     NominalcertificateComponent,
     ViewnominalformComponent,
     AssociateinterestformComponent,
-    EOIComponent
+    EOIRequestsComponent,
   ],
   imports: [
     BrowserModule,

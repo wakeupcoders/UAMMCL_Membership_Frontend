@@ -1,14 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { config } from '../config';
 
 @Component({
-  selector: 'app-eoi',
-  templateUrl: './eoi.component.html',
-  styleUrls: ['./eoi.component.css']
+  selector: 'app-expression-of-interest',
+  templateUrl: './expression-of-interest.component.html',
+  styleUrls: ['./expression-of-interest.component.css']
 })
-export class EOIComponent implements OnInit {
+export class ExpressionOfInterestComponent implements OnInit {
 
   isLoading = false;
+  formSubmitted = false;
   eoiForm: FormGroup;
   entityTypes = ['Individual', 'Firm'];
   genders = ['Male', 'Female', 'Other'];
@@ -23,7 +26,7 @@ export class EOIComponent implements OnInit {
     'Delhi', 'Jammu and Kashmir', 'Ladakh', 'Lakshadweep', 'Puducherry'
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.eoiForm = this.fb.group({
@@ -44,9 +47,14 @@ export class EOIComponent implements OnInit {
 
   onSubmit() {
     if (this.eoiForm.valid) {
+      this.isLoading = true;
+      this.httpClient.post(config.BASE_URL + '/api/EOI', this.eoiForm.value).subscribe(res => {
+        this.isLoading = false;
+        this.formSubmitted = true;
+      })
       console.log('Form Submitted', this.eoiForm.value);
     } else {
-      console.log('Form Invalid');
+      console.log('Looks Like, Form is Invalid.');
     }
   }
 

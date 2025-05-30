@@ -1,0 +1,107 @@
+<!-- <app-header *ngIf="!isLoading"></app-header> -->
+
+
+<app-loader *ngIf="isLoading"></app-loader>
+
+<div *ngIf="selectedItem" class="card mt-4 shadow-sm">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">Expression of Interest Details</h5>
+    <button class="btn btn-sm btn-light" (click)="selectedItem = null">Close</button>
+  </div>
+  <div class="card-body">
+    <div class="row mb-2" *ngFor="let field of viewFields">
+      <div class="col-sm-4 fw-bold">{{ field.label }}</div>
+      <div class="col-sm-8">{{ selectedItem[field.key] }}</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" *ngIf="!isLoading && EOIs.length<=0 && isTableView">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="card text-center">
+      <img src="https://assets-v2.lottiefiles.com/a/0e30b444-117c-11ee-9b0d-0fd3804d46cd/BkQxD7wtnZ.gif"
+        class="card-img-top mx-auto d-block" alt="No Records">
+      <div class="card-body">
+        <h3 class="card-title mb-3">No Records Found</h3>
+        <p class="card-text mb-4">It looks like there are no records available. You can add new records or contact
+          support for assistance.</p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="https://wakeupcoders.com" target="_blank" class="btn btn-secondary btn-lg">Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+
+
+<div class="container" *ngIf="!isLoading && !selectedItem">
+ 
+  <div class="container mt-4" *ngIf="isTableView && EOIs.length>0">
+    <h2>Expression of Interest Data</h2>
+    <br>
+
+    <div class="table-responsive">
+    
+
+      <table class="table table-bordered table-striped">
+   <thead class="thead-dark">
+    <tr>
+      <th>Entity Type</th>
+      <th>Applicant Name</th>
+      <th>Gender</th>
+      <th>Father's Name</th>
+      <th>Address</th>
+      <th>State</th>
+      <th>Tehsil</th>
+      <th>District</th>
+      <th>Pincode</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Comments</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of EOIs">
+      <td>{{ item.entityType }}</td>
+      <td>{{ item.applicantName }}</td>
+      <td>{{ item.gender }}</td>
+      <td>{{ item.fname }}</td>
+      <td>{{ item.address | slice:0:15}} ...</td>
+      <td>{{ item.state }}</td>
+      <td>{{ item.tehsil }}</td>
+      <td>{{ item.district }}</td>
+      <td>{{ item.pincode }}</td>
+      <td>{{ item.mobile }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.comments }}</td>
+      <td>{{ item.createdAt }}</td>
+      <td>  <button class="btn btn-primary btn-sm" (click)="onViewRequest(item)"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-gear-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                  </svg></button>
+                <button class="btn btn-danger btn-sm" (click)="deletePopup(item._id)"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path
+                      d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                  </svg></button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- <app-footer *ngIf="!isLoading"></app-footer> -->
