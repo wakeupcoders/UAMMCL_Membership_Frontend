@@ -24,7 +24,7 @@ viewFields = [
   { key: 'entityType', label: 'Entity Type' },
   { key: 'applicantName', label: 'Applicant Name' },
   { key: 'gender', label: 'Gender' },
-  { key: 'fname', label: 'Father’s Name' },
+  { key: 'fname', label: 'Father’s or Concerned Person Name' },
   { key: 'address', label: 'Address' },
   { key: 'state', label: 'State' },
   { key: 'tehsil', label: 'Tehsil' },

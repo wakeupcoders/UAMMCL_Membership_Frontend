@@ -15,6 +15,7 @@ export class ExpressionOfInterestComponent implements OnInit {
   eoiForm: FormGroup;
   entityTypes = ['Individual', 'Firm'];
   genders = ['Male', 'Female', 'Other'];
+  isDeclarationChecked = false;
   indianStates: string[] = [
     'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
     'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
@@ -36,11 +37,11 @@ export class ExpressionOfInterestComponent implements OnInit {
       fname: ['', Validators.required],
       address: ['', Validators.required],
       state: ['', Validators.required],
-      tehsil: ['', Validators.required],
+      tehsil: [''],
       district: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
       mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.email]],
       comments: ['']
     });
   }
@@ -61,6 +62,16 @@ export class ExpressionOfInterestComponent implements OnInit {
   onReset() {
     this.eoiForm.reset();
   }
+
+  isFirmSelected(): boolean {
+  return this.eoiForm.get('entityType')?.value === 'Firm';
+}
+
+onDeclarationChange(event: Event): void {
+  const checkbox = event.target as HTMLInputElement;
+  this.isDeclarationChecked = checkbox.checked;
+}
+
 
 
 }

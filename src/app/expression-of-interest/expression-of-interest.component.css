@@ -9,6 +9,10 @@
   margin-bottom: 1rem;   /* larger gap below to add space before next input */
 }
 
+.card{
+  border:none;
+}
+
 .card-header h4 {
   font-size: 1.2rem; /* smaller than default h4 */
   margin-bottom: 0.25rem;
