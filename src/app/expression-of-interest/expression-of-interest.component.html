@@ -17,11 +17,11 @@
 <div *ngIf="!formSubmitted">
     <form [formGroup]="eoiForm" (ngSubmit)="onSubmit()">
         <div class="card">
-            <div class="card-header text-white bg-dark">
+            <div class="card-header text-white">
                 <h4>
                     <img src="../../../assets/img/Unati-logo.png" alt="Logo" class="logo-size">
                 </h4>
-                <h5 class="text-white text-center" style="margin-top:-20px;">
+                <h5 class="text-dark text-center" style="margin-top:-20px;">
                     The Unati Agri Allied and Marketing Multistate Cooperative Society Ltd <br>
                     <span class="hindititle">
                         बहुराज्य सहकारी समितियां अधिनियम 2002 के अन्तर्गत, पंजीकृत संख्या MSCS/CR/1424/2023
@@ -156,13 +156,16 @@
                             (change)="onDeclarationChange($event)">
                         <label class="form-check-label" for="declarationCheck">
                             <strong>DECLARATION</strong><br />
-                            I hereby declare that I have shown expression of interest without any pressure/influence.
+                            <span style="text-align: justify;">I hereby declare that I have shown expression of interest without any pressure/influence.
                             I also declare that I will abide by all rules & regulations of the Society. By filling this
                             form,
                             it does not mean that my request is accepted. I will provide additional details and pay as
                             per
-                            allocation of shares and applicable fee.
+                            allocation of shares and applicable fee.</span>
                         </label>
+                        
+                        <p class="text-danger mt-2">Note: For Any Query Please Contact: <a href="tel:+919056758182" class="text-danger">+91 90567-58182</a>
+ </p>
                     </div>
                     <!-- Submit Button -->
                     <div class="text-center mt-3">

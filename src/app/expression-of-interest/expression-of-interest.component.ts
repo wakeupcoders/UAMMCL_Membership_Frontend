@@ -13,7 +13,7 @@ export class ExpressionOfInterestComponent implements OnInit {
   isLoading = false;
   formSubmitted = false;
   eoiForm: FormGroup;
-  entityTypes = ['Individual', 'Firm'];
+  entityTypes = ['Individual', 'Cooperative Society / Organization'];
   genders = ['Male', 'Female', 'Other'];
   isDeclarationChecked = false;
   indianStates: string[] = [
