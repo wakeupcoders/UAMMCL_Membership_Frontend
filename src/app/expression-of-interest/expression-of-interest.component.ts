@@ -64,7 +64,7 @@ export class ExpressionOfInterestComponent implements OnInit {
   }
 
   isFirmSelected(): boolean {
-  return this.eoiForm.get('entityType')?.value === 'Firm';
+  return this.eoiForm.get('entityType')?.value === 'Cooperative Society / Organization';
 }
 
 onDeclarationChange(event: Event): void {

@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
 
         response => { 
           this.authService.setToken(response.token);
-          this.router.navigate(['/ordinary']);
+          // this.router.navigate(['/ordinary']);
+          window.location.href = '/ordinary';
           this.isLoading = false; },
         error => { alert("Login Failed"); this.isLoading = false; }
       );
